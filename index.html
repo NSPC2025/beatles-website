@@ -107,13 +107,19 @@
       }
     }
 
-    /* Mobile: vertical dropdown activated by click - ברירת מחדל פשוטה */
+    /* Mobile: vertical dropdown activated by click with slide animations */
     @media (max-width: 600px) {
       .dropdown-wrapper {
         width: 100%;
       }
       .dropdown-content {
-        display: none;
+        display: block; /* תמיד block כדי לאפשר transition */
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition:
+          max-height 0.35s ease,
+          opacity 0.35s ease;
         position: static;
         width: 100%;
         background-color: white;
@@ -123,7 +129,9 @@
         margin-top: 8px;
       }
       .dropdown-wrapper.active .dropdown-content {
-        display: block;
+        max-height: 500px; /* מספיק להראות את כל התפריט */
+        opacity: 1;
+        padding: 10px 0;
       }
       .dropdown-content a {
         padding: 12px 16px;
@@ -217,7 +225,7 @@
     }
   });
 
-  // סגירת התפריט בלחיצה על קישור
+  // Close menu on link click (mobile)
   const menuLinks = dropdownWrapper.querySelectorAll('.dropdown-content a');
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {

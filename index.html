@@ -12,6 +12,7 @@
       color: #222;
       line-height: 1.6;
     }
+
     header {
       background-color: #222;
       color: white;
@@ -20,12 +21,14 @@
       margin-bottom: 20px;
       text-align: center;
     }
+
     .header-content {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 20px;
     }
+
     .site-logo {
       max-width: 80px;
       height: auto;
@@ -49,6 +52,7 @@
       justify-content: space-between;
       margin: 0 auto;
     }
+
     .hamburger span {
       display: block;
       height: 4px;
@@ -56,6 +60,7 @@
       border-radius: 2px;
       transition: background-color 0.3s ease;
     }
+
     .dropdown:hover .hamburger span {
       background-color: #388E3C;
     }
@@ -66,12 +71,15 @@
       top: 28px;
       left: 50%;
       transform: translateX(-50%);
-      background-color: white;
+      background-color: rgba(255, 255, 255, 0.95);
       min-width: 200px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      border-radius: 6px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      border-radius: 8px;
       z-index: 1000;
       text-align: left;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
     }
 
     .dropdown-content a {
@@ -83,9 +91,11 @@
       border-bottom: 1px solid #ddd;
       transition: background-color 0.2s ease;
     }
+
     .dropdown-content a:last-child {
       border-bottom: none;
     }
+
     .dropdown-content a:hover {
       background-color: #4CAF50;
       color: white;
@@ -95,26 +105,17 @@
     @media (min-width: 601px) {
       .dropdown:hover .dropdown-content {
         display: block;
+        opacity: 1;
+        pointer-events: auto;
       }
     }
 
-    /* במובייל - פתיחה בלחיצה ועיצוב פרוס לרוחב */
+    /* במובייל - פתיחה בלחיצה */
     @media (max-width: 600px) {
       .dropdown {
         width: 100%;
       }
-      .hamburger {
-        display: flex;
-      }
-      .dropdown:hover .dropdown-content {
-        display: none;
-      }
-      .dropdown.active .dropdown-content {
-        display: block;
-        background-color: white;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        border-radius: 0;
-      }
+
       .dropdown-content {
         position: absolute;
         top: 100%;
@@ -124,15 +125,26 @@
         transform: none;
         text-align: center;
         padding: 10px 0;
+        background-color: white;
+        box-shadow: none;
+        border-radius: 0;
       }
+
       .dropdown-content a {
         display: block;
         padding: 14px 0;
         font-weight: bold;
         border-bottom: 1px solid #eee;
       }
+
       .dropdown-content a:last-child {
         border-bottom: none;
+      }
+
+      .dropdown.active .dropdown-content {
+        display: block;
+        opacity: 1;
+        pointer-events: auto;
       }
     }
 
@@ -141,9 +153,11 @@
       overflow-wrap: normal;
       hyphens: none;
     }
+
     h1 {
       margin: 0;
     }
+
     section {
       background-color: white;
       padding: 20px;
@@ -154,25 +168,30 @@
       margin-left: auto;
       margin-right: auto;
     }
+
     h2 {
       color: #4CAF50;
       border-bottom: 2px solid #4CAF50;
       padding-bottom: 5px;
     }
+
     h3 {
       color: #333;
       margin-top: 20px;
     }
+
     ul {
       margin-top: 10px;
       margin-left: 20px;
     }
+
     footer {
       text-align: center;
       color: #666;
       margin-top: 50px;
       font-size: 0.9em;
     }
+
     .italic-custom-font {
       font-family: "Adobe Garamond Pro", Garamond, serif;
       font-style: italic;
@@ -211,10 +230,10 @@
   </div>
 </div>
 
-<!-- תוכן האתר -->
+<!-- תוכן הדף -->
 <section id="formation">
   <h2>Formation (1960–1962)</h2>
-  <p>The Beatles were formed in Liverpool in 1960, initially with members John Lennon, Paul McCartney, George Harrison, Stuart Sutcliffe, and Pete Best.</p>
+  <p>The Beatles were formed in Liverpool in 1960...</p>
 </section>
 
 <section id="early-success">
@@ -224,12 +243,12 @@
 
 <section id="mid-period">
   <h2>Mid Period (1966–1967)</h2>
-  <p>The Beatles evolve artistically, exploring new musical styles and studio techniques.</p>
+  <p>The Beatles evolve artistically, exploring new musical styles.</p>
 </section>
 
 <section id="late-period">
   <h2>Late Period (1968–1970)</h2>
-  <p>The Beatles release their most ambitious works, but internal tensions rise leading to their breakup.</p>
+  <p>The Beatles release their most ambitious works.</p>
 </section>
 
 <section id="legacy">
@@ -241,7 +260,7 @@
   <p>&copy; 2025 Beatles Info Site</p>
 </footer>
 
-<!-- JavaScript להפעלה במובייל -->
+<!-- JavaScript לפתיחה וסגירה במובייל -->
 <script>
   const dropdown = document.querySelector('.dropdown');
   const hamburger = document.querySelector('.hamburger');

@@ -44,7 +44,7 @@
       cursor: pointer;
       width: 30px;
       height: 22px;
-      display: none;
+      display: flex;
       flex-direction: column;
       justify-content: space-between;
       margin: 0 auto;
@@ -67,12 +67,13 @@
       left: 50%;
       transform: translateX(-50%);
       background-color: white;
-      min-width: 180px;
+      min-width: 200px;
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       border-radius: 6px;
       z-index: 1000;
       text-align: left;
     }
+
     .dropdown-content a {
       color: #222;
       padding: 12px 16px;
@@ -90,16 +91,18 @@
       color: white;
     }
 
+    /* במחשב - פתיחה ב-hover */
     @media (min-width: 601px) {
       .dropdown:hover .dropdown-content {
         display: block;
-        width: 90vw;
-        max-width: 600px;
-        text-align: center;
       }
     }
 
+    /* במובייל - פתיחה בלחיצה ועיצוב פרוס לרוחב */
     @media (max-width: 600px) {
+      .dropdown {
+        width: 100%;
+      }
       .hamburger {
         display: flex;
       }
@@ -109,20 +112,27 @@
       .dropdown.active .dropdown-content {
         display: block;
         background-color: white;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        border-radius: 6px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        border-radius: 0;
       }
       .dropdown-content {
-        position: static;
-        box-shadow: none;
-        background-color: transparent;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
         width: 100%;
         transform: none;
+        text-align: center;
+        padding: 10px 0;
       }
       .dropdown-content a {
+        display: block;
+        padding: 14px 0;
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+      }
+      .dropdown-content a:last-child {
         border-bottom: none;
-        padding: 10px 0;
-        font-weight: normal;
       }
     }
 
@@ -182,7 +192,7 @@
   </div>
 </header>
 
-<!-- תפריט ההמבורגר במרכז מתחת לכותרת -->
+<!-- תפריט ניווט -->
 <div style="text-align:center; margin-bottom: 30px;">
   <div class="dropdown" aria-label="Main navigation menu">
     <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
@@ -201,17 +211,37 @@
   </div>
 </div>
 
-<!-- תוכן הדף -->
+<!-- תוכן האתר -->
 <section id="formation">
   <h2>Formation (1960–1962)</h2>
-  <p>The Beatles were formed in Liverpool in 1960...</p>
+  <p>The Beatles were formed in Liverpool in 1960, initially with members John Lennon, Paul McCartney, George Harrison, Stuart Sutcliffe, and Pete Best.</p>
 </section>
-<!-- שאר הסקשנים כאן... -->
+
+<section id="early-success">
+  <h2>Early Success (1963–1965)</h2>
+  <p>The Beatles rise to fame in the UK and later internationally.</p>
+</section>
+
+<section id="mid-period">
+  <h2>Mid Period (1966–1967)</h2>
+  <p>The Beatles evolve artistically, exploring new musical styles and studio techniques.</p>
+</section>
+
+<section id="late-period">
+  <h2>Late Period (1968–1970)</h2>
+  <p>The Beatles release their most ambitious works, but internal tensions rise leading to their breakup.</p>
+</section>
+
+<section id="legacy">
+  <h2>Legacy & Influence</h2>
+  <p>The Beatles remain one of the most influential bands in music history.</p>
+</section>
 
 <footer>
   <p>&copy; 2025 Beatles Info Site</p>
 </footer>
 
+<!-- JavaScript להפעלה במובייל -->
 <script>
   const dropdown = document.querySelector('.dropdown');
   const hamburger = document.querySelector('.hamburger');

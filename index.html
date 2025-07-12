@@ -39,6 +39,7 @@
       display: inline-block;
       user-select: none;
       margin: 0 auto;
+      z-index: 1000; /* מעל כל התוכן */
     }
 
     .dropdown {
@@ -77,28 +78,28 @@
       left: 50%;
       transform: translateX(-50%) translateY(-10px);
       background-color: white;
-      min-width: 300px;
-      max-width: 600px;
+      min-width: 320px;
+      max-width: calc(100vw - 40px); /* למנוע חיתוך מצדדים */
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       border-radius: 6px;
-      z-index: 1000;
       text-align: center;
       transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
       display: flex;
-      gap: 15px;
+      gap: 20px;
       justify-content: center;
       padding: 5px 10px;
       white-space: nowrap;
+      z-index: 1000;
     }
     .dropdown-content a {
       color: #222;
       padding: 12px 15px;
       text-decoration: none;
       font-weight: bold;
-      border-bottom: none;
       border-radius: 4px;
       transition: background-color 0.2s ease;
       display: inline-block;
+      white-space: nowrap;
     }
     .dropdown-content a:hover {
       background-color: #4CAF50;
@@ -115,7 +116,7 @@
       }
     }
 
-    /* במובייל - תפריט אנכי, פתיחה בלחיצה, צף מעל התוכן */
+    /* במובייל - תפריט אנכי, פתיחה בלחיצה, צף מעל התוכן עם אנימציות */
     @media (max-width: 600px) {
       .dropdown-wrapper {
         width: 100%;
@@ -129,10 +130,11 @@
         opacity: 0;
         pointer-events: none;
       }
-      .dropdown-wrapper.active .dropdown-content {
-        max-height: 1000px;
-        opacity: 1;
-        pointer-events: auto;
+      .dropdown-content {
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        white-space: normal;
         position: absolute;
         top: 100%;
         left: 0;
@@ -140,23 +142,19 @@
         box-shadow: 0 8px 16px rgba(0,0,0,0.15);
         border-radius: 0;
         width: 100%;
-        transform: none;
-        text-align: center;
-        padding: 10px 0;
-        overflow: visible;
+        padding: 0 0;
+        max-height: 0;
+        opacity: 0;
+        pointer-events: none;
+        overflow: hidden;
         transition: max-height 0.3s ease, opacity 0.3s ease;
         z-index: 1000;
-        display: block;
-        flex-direction: column;
-      }
-      .dropdown-content {
-        display: none; /* ברירת מחדל במובייל, יוצג רק כש-active */
-        flex-direction: column;
-        background-color: white;
-        white-space: normal;
       }
       .dropdown-wrapper.active .dropdown-content {
-        display: flex;
+        max-height: 1000px; /* מספיק גדול לפתוח את כל התפריט */
+        opacity: 1;
+        pointer-events: auto;
+        padding: 10px 0;
       }
       .dropdown-content a {
         display: block;

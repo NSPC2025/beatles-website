@@ -40,6 +40,7 @@
       margin: 0 auto;
     }
 
+    /* המבורגר תמיד מוצג */
     .hamburger {
       cursor: pointer;
       width: 30px;
@@ -60,20 +61,27 @@
       background-color: #388E3C;
     }
 
+    /* התפריט – מצב סגור */
     .dropdown-content {
-      display: none;
       position: absolute;
       top: 28px;
       left: 50%;
-      transform: translateX(-50%);
-      background-color: white;
+      transform: translateX(-50%) translateY(-10px);
+      background-color: rgba(255, 255, 255, 0.95);
       min-width: 200px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      border-radius: 6px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+      border-radius: 8px;
       z-index: 1000;
       text-align: left;
+
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+      pointer-events: none;
     }
 
+    /* לינקים בתפריט */
     .dropdown-content a {
       color: #222;
       padding: 12px 16px;
@@ -93,27 +101,19 @@
 
     /* במחשב - פתיחה ב-hover */
     @media (min-width: 601px) {
+      /* hover: מציג את התפריט עם אנימציית slide-down */
       .dropdown:hover .dropdown-content {
-        display: block;
+        max-height: 500px; /* מספיק גובה להראות את כל התפריט */
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
       }
     }
 
-    /* במובייל - פתיחה בלחיצה ועיצוב פרוס לרוחב */
+    /* במובייל - פריסה מלאה ותפריט בלחיצה */
     @media (max-width: 600px) {
       .dropdown {
         width: 100%;
-      }
-      .hamburger {
-        display: flex;
-      }
-      .dropdown:hover .dropdown-content {
-        display: none;
-      }
-      .dropdown.active .dropdown-content {
-        display: block;
-        background-color: white;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        border-radius: 0;
       }
       .dropdown-content {
         position: absolute;
@@ -121,18 +121,33 @@
         left: 0;
         right: 0;
         width: 100%;
-        transform: none;
+        transform: translateY(-10px);
         text-align: center;
         padding: 10px 0;
+        background-color: white;
+        box-shadow: none;
+        border-radius: 0;
+
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+        pointer-events: none;
       }
       .dropdown-content a {
-        display: block;
-        padding: 14px 0;
-        font-weight: bold;
         border-bottom: 1px solid #eee;
+        font-weight: bold;
+        padding: 14px 0;
       }
       .dropdown-content a:last-child {
         border-bottom: none;
+      }
+      /* כש-active - התפריט נפתח באנימציה */
+      .dropdown.active .dropdown-content {
+        max-height: 1000px; /* גבוה כדי להבטיח הכל גלוי */
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
       }
     }
 
@@ -195,12 +210,12 @@
 <!-- תפריט ניווט -->
 <div style="text-align:center; margin-bottom: 30px;">
   <div class="dropdown" aria-label="Main navigation menu">
-    <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
+    <div class="hamburger" aria-label="Menu" role="button" tabindex="0" aria-expanded="false" aria-controls="menu-list">
       <span></span>
       <span></span>
       <span></span>
     </div>
-    <div class="dropdown-content" role="menu" aria-hidden="true">
+    <div class="dropdown-content" role="menu" aria-hidden="true" id="menu-list">
       <a href="#formation" role="menuitem">Formation (1960–1962)</a>
       <a href="#early-success" role="menuitem">Early Success (1963–1965)</a>
       <a href="#mid-period" role="menuitem">Mid Period (1966–1967)</a>
@@ -241,34 +256,57 @@
   <p>&copy; 2025 Beatles Info Site</p>
 </footer>
 
-<!-- JavaScript להפעלה במובייל -->
 <script>
   const dropdown = document.querySelector('.dropdown');
   const hamburger = document.querySelector('.hamburger');
+  const dropdownContent = dropdown.querySelector('.dropdown-content');
 
+  // פונקציה לזיהוי מובייל לפי רוחב מסך
   function isMobile() {
     return window.matchMedia("(max-width: 600px)").matches;
   }
 
-  hamburger.addEventListener('click', () => {
+  // פונקציה לעדכון aria-expanded ו aria-hidden
+  function updateAria(isOpen) {
+    hamburger.setAttribute('aria-expanded', isOpen);
+    dropdownContent.setAttribute('aria-hidden', !isOpen);
+  }
+
+  // במובייל: פתיחה וסגירה בלחיצה על ההמבורגר
+  hamburger.addEventListener('click', (e) => {
     if (isMobile()) {
       dropdown.classList.toggle('active');
+      updateAria(dropdown.classList.contains('active'));
+      e.stopPropagation();
     }
   });
 
+  // במחשב: לא לפתוח בלחיצה, רק ב-hover (אז אין class active)
+  // סגירה בלחיצה מחוץ לכל התפריט (גם במחשב וגם במובייל)
   document.addEventListener('click', (event) => {
-    if (isMobile() && !dropdown.contains(event.target)) {
+    if (!dropdown.contains(event.target)) {
       dropdown.classList.remove('active');
+      updateAria(false);
     }
   });
 
+  // במובייל: סגירת התפריט בלחיצה על קישור
   const menuLinks = dropdown.querySelectorAll('.dropdown-content a');
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
       if (isMobile()) {
         dropdown.classList.remove('active');
+        updateAria(false);
       }
     });
+  });
+
+  // לאפשר פתיחה גם באמצעות מקש Enter על ההמבורגר (נגישות)
+  hamburger.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      hamburger.click();
+    }
   });
 </script>
 

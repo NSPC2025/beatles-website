@@ -87,31 +87,39 @@
       font-style: italic;
     }
       @media (max-width: 600px) {
-    body {
-      margin: 10px;
-      font-size: 16px;
+      body {
+        margin: 10px;
+        font-size: 16px;
+      }
+      nav {
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+      }
+      nav a {
+        margin: 0;
+        padding: 8px 12px;
+        font-size: 14px;
+        white-space: nowrap;
+        background-color: #388e3c;
+        border-radius: 4px;
+        display: inline-block;
+      }
+      section {
+        padding: 15px;
+        margin-bottom: 30px;
+        max-width: 100%;
+      }
+      header, footer {
+        padding: 15px;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
     }
-    nav {
-      padding: 10px;
-    }
-    nav a {
-      margin: 0 8px;
-      padding: 8px 6px;
-      font-size: 14px;
-    }
-    section {
-      padding: 15px;
-      margin-bottom: 30px;
-      max-width: 100%;
-    }
-    header, footer {
-      padding: 15px;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-    }
-  }
   </style>
 </head>
 <body>

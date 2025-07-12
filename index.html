@@ -17,11 +17,13 @@
       color: white;
       padding: 20px;
       border-radius: 8px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+      text-align: center;
     }
     .header-content {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 20px;
     }
     .site-logo {
@@ -36,6 +38,7 @@
       position: relative;
       display: inline-block;
       user-select: none;
+      margin: 0 auto;
     }
     .hamburger {
       cursor: pointer;
@@ -44,6 +47,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      margin: 0 auto;
     }
     .hamburger span {
       display: block;
@@ -60,12 +64,14 @@
       display: none;
       position: absolute;
       top: 28px; /* מתחת ל"שלושה הקווים" */
-      left: 0;
+      left: 50%;
+      transform: translateX(-50%);
       background-color: white;
       min-width: 180px;
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       border-radius: 6px;
       z-index: 1000;
+      text-align: left;
     }
     .dropdown-content a {
       color: #222;
@@ -103,6 +109,7 @@
         background-color: transparent;
         display: none;
         width: 100%;
+        transform: none;
       }
       .dropdown:hover .dropdown-content {
         display: block;
@@ -133,6 +140,8 @@
       border-radius: 8px;
       box-shadow: 0 0 10px #ccc;
       max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
     h2 {
       color: #4CAF50;
@@ -169,24 +178,27 @@
       class="site-logo"
     />
     <h1>The Beatles - Comprehensive Information</h1>
-
-    <div class="dropdown" style="margin-left:auto;">
-      <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="dropdown-content" role="menu" aria-hidden="true">
-        <a href="#formation" role="menuitem">Formation (1960–1962)</a>
-        <a href="#early-success" role="menuitem">Early Success (1963–1965)</a>
-        <a href="#mid-period" role="menuitem">Mid Period (1966–1967)</a>
-        <a href="#late-period" role="menuitem">Late Period (1968–1970)</a>
-        <a href="mccartney.html" role="menuitem">McCartney (1970)</a>
-        <a href="#legacy" role="menuitem">Legacy & Influence</a>
-      </div>
-    </div>
   </div>
 </header>
+
+<!-- תפריט ההמבורגר במרכז מתחת לכותרת -->
+<div style="text-align:center; margin-bottom: 30px;">
+  <div class="dropdown" aria-label="Main navigation menu">
+    <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="dropdown-content" role="menu" aria-hidden="true">
+      <a href="#formation" role="menuitem">Formation (1960–1962)</a>
+      <a href="#early-success" role="menuitem">Early Success (1963–1965)</a>
+      <a href="#mid-period" role="menuitem">Mid Period (1966–1967)</a>
+      <a href="#late-period" role="menuitem">Late Period (1968–1970)</a>
+      <a href="mccartney.html" role="menuitem">McCartney (1970)</a>
+      <a href="#legacy" role="menuitem">Legacy & Influence</a>
+    </div>
+  </div>
+</div>
 
 <section id="formation">
   <h2>Formation (1960–1962)</h2>

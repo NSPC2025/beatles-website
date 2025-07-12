@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,6 +30,14 @@
     h1, h2 {
       color: #4CAF50;
       text-align: center;
+    }
+
+    img.album-cover {
+      width: 250px;
+      float: left;
+      margin: 0 20px 15px 0;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
     hr {
@@ -89,6 +96,7 @@
       cursor: pointer;
       outline: none;
       transform: scale(1.05);
+      transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
     }
     .back-link a:focus-visible {
       outline: 2px solid #2E7D32;
@@ -105,6 +113,15 @@
         padding: 15px;
         margin-bottom: 30px;
         max-width: 100%;
+      }
+
+      img.album-cover {
+        float: none;
+        display: block;
+        margin: 0 auto 20px;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
       }
 
       h1 {
@@ -140,35 +157,34 @@
     <h1>The Lovely Linda</h1>
 
     <div class="back-link">
-      <a href="mccartney.html">&larr; Back to Album</a>
+      <a href="mccartney.html">&larr; Back to McCartney (1970)</a>
     </div>
 
     <section>
-      <p><strong>Composer:</strong> Paul McCartney</p>
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/en/thumb/5/5e/McCartneyalbumcover.jpg/220px-McCartneyalbumcover.jpg" 
+        alt="McCartney Album Cover" 
+        class="album-cover"
+      />
 
+      <p><strong>Track:</strong> 1</p>
       <p><strong>Length:</strong> 0:45</p>
-
-      <p><strong>Recording Date:</strong> December 1969</p>
-
-      <hr>
-
-      <h2>Background</h2>
-      <p><em>The Lovely Linda</em> was the first track Paul McCartney recorded for his debut solo album. Intended initially as a test of his new home studio setup, it became the whimsical opener to the *McCartney* album.</p>
-
-      <p>The song was inspired by Paul’s wife Linda, and its brief, casual nature sets the tone for much of the rest of the album — intimate, homegrown, and spontaneous.</p>
+      <p><strong>Composer:</strong> Paul McCartney</p>
+      <p><strong>Recording Date:</strong> 23–30 December 1969</p>
 
       <hr>
 
-      <h2>Personnel</h2>
-      <ul>
-        <li>Paul McCartney – vocals, acoustic guitar, bass, percussion</li>
-        <li>Linda McCartney – backing vocals (uncredited)</li>
-      </ul>
+      <p>
+        <em class="italic-custom-font">“The Lovely Linda”</em> opens the album with a simple, charming acoustic tune, initially conceived as a test for Paul’s 4-track Studer tape recorder. It’s the shortest track on the album, featuring McCartney’s vocals, acoustic guitar, and a bit of background noise that gives it a home-recorded feel.
+      </p>
 
-      <hr>
+      <p>
+        The song is dedicated to Paul’s wife Linda and exudes an intimate, spontaneous atmosphere, which sets the tone for the rest of the album’s lo-fi aesthetic. It fades out abruptly, underscoring its status as a fragment or musical sketch rather than a full composition.
+      </p>
 
-      <h2>Trivia</h2>
-      <p>It fades in with background noise — a deliberate production choice by Paul to emphasize the informal, homemade aesthetic of the album.</p>
+      <p>
+        Though brief, “The Lovely Linda” embodies the personal and informal approach that defines <em class="italic-custom-font">McCartney</em>, reflecting Paul’s decision to move away from The Beatles’ large-scale production techniques.
+      </p>
     </section>
   </main>
 

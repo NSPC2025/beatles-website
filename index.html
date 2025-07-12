@@ -111,7 +111,7 @@
       }
     }
 
-    /* במובייל - פתיחה בלחיצה ועיצוב פרוס לרוחב */
+    /* במובייל - פתיחה בלחיצה ועיצוב פרוס לרוחב עם אנימציית slide-down */
     @media (max-width: 600px) {
       .dropdown-wrapper {
         width: 100%;
@@ -126,7 +126,7 @@
         pointer-events: none;
       }
       .dropdown-wrapper.active .dropdown-content {
-        max-height: none;
+        max-height: 500px; /* גובה סביר לתפריט */
         opacity: 1;
         pointer-events: auto;
         position: static;
@@ -136,8 +136,8 @@
         transform: none;
         text-align: center;
         padding: 10px 0;
-        overflow: visible;
-        transition: none;
+        overflow: hidden; /* חשוב לאנימציה חלקה */
+        transition: max-height 0.3s ease, opacity 0.3s ease;
       }
       .dropdown-content a {
         display: block;

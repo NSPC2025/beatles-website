@@ -24,20 +24,19 @@
       background-color: #222;
       color: white;
       padding: 20px;
+      text-align: center;
       border-radius: 8px;
       margin-bottom: 30px;
-    }
-    .header-content {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       gap: 20px;
     }
-    .site-logo {
-      max-width: 80px;
+    header img {
+      max-width: 60px;
       height: auto;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
     nav {
       background-color: #4CAF50;
@@ -48,18 +47,79 @@
       overflow-x: auto;
       white-space: nowrap;
     }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      display: inline-block;
-      padding: 5px 10px;
-      border-radius: 4px;
+    /* Main menu container */
+    nav ul.menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
     }
-    nav a:hover {
-      text-decoration: underline;
+    nav ul.menu li {
+      position: relative;
+      margin-right: 20px;
+    }
+    nav ul.menu li a {
+      text-decoration: none;
+      padding: 8px 12px;
+      display: block;
+      color: white;
+      background-color: #4CAF50;
+      border-radius: 4px;
+      font-weight: bold;
+      white-space: nowrap;
+      transition: background-color 0.3s ease;
+    }
+    nav ul.menu li a:hover,
+    nav ul.menu li a:focus {
       background-color: #45a049;
+      outline: none;
+    }
+    /* Dropdown styles */
+    nav ul.menu li.dropdown:hover > ul.dropdown-content,
+    nav ul.menu li.dropdown:focus-within > ul.dropdown-content {
+      display: block;
+    }
+    ul.dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #4CAF50;
+      min-width: 160px;
+      top: 100%;
+      left: 0;
+      border-radius: 4px;
+      padding: 0;
+      list-style: none;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    ul.dropdown-content li a {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      font-weight: normal;
+      border-radius: 0;
+    }
+    ul.dropdown-content li a:hover,
+    ul.dropdown-content li a:focus {
+      background-color: #388E3C;
+      outline: none;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      nav ul.menu {
+        flex-direction: column;
+      }
+      nav ul.menu li {
+        margin-right: 0;
+        margin-bottom: 8px;
+      }
+      ul.dropdown-content {
+        position: static;
+        min-width: auto;
+        border-radius: 0;
+        box-shadow: none;
+      }
     }
     section {
       background-color: white;
@@ -88,75 +148,34 @@
       margin-top: 50px;
       font-size: 0.9em;
     }
-    .clearfix::after {
-      content: "";
-      display: table;
-      clear: both;
-    }
     .italic-custom-font {
       font-family: "Adobe Garamond Pro", Garamond, serif;
       font-style: italic;
-    }
-    @media (max-width: 600px) {
-      body {
-        margin: 10px;
-        font-size: 16px;
-      }
-      header {
-        padding: 15px;
-      }
-      .header-content {
-        flex-direction: column;
-        gap: 10px;
-        align-items: center;
-        text-align: center;
-      }
-      nav {
-        padding: 10px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        justify-content: center;
-      }
-      nav a {
-        margin: 0;
-        padding: 8px 12px;
-        font-size: 14px;
-        white-space: nowrap;
-        background-color: #388e3c;
-        border-radius: 4px;
-        display: inline-block;
-      }
-      section {
-        padding: 15px;
-        margin-bottom: 30px;
-        max-width: 100%;
-      }
-      footer {
-        padding: 15px;
-      }
-      img.site-logo {
-        max-width: 120px;
-      }
     }
   </style>
 </head>
 <body>
 
 <header>
-  <div class="header-content">
-    <img src="https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-cfb0-61f7-b631-8e77b070dd08/raw?se=2025-07-12T11%3A04%3A22Z&sp=r&sv=2024-08-04&sr=b&scid=d507fbd8-d320-5e7e-b007-f6cab7870ee2&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-12T00%3A33%3A17Z&ske=2025-07-13T00%3A33%3A17Z&sks=b&skv=2024-08-04&sig=QXs3UOGTQotw20lxg1D1nEh23IqLpoGCkRQVLnkAuv4%3D" alt="Site Logo" class="site-logo" />
-    <h1>The Beatles - Comprehensive Information</h1>
-  </div>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/The_Beatles_logo.svg/120px-The_Beatles_logo.svg.png" alt="The Beatles Logo" />
+  <h1>The Beatles - Comprehensive Information</h1>
 </header>
 
 <nav>
-  <a href="#formation">Formation (1960–1962)</a>
-  <a href="#early-success">Early Success (1963–1965)</a>
-  <a href="#mid-period">Mid Period (1966–1967)</a>
-  <a href="#late-period">Late Period (1968–1970)</a>
-  <a href="mccartney.html">McCartney (1970)</a>
-  <a href="#legacy">Legacy & Influence</a>
+  <ul class="menu">
+    <li><a href="#formation">Formation (1960–1962)</a></li>
+    <li class="dropdown" tabindex="0">
+      <a href="#early-success" class="dropbtn" aria-haspopup="true" aria-expanded="false">Early Success (1963–1965)</a>
+      <ul class="dropdown-content" aria-label="submenu">
+        <li><a href="#albums">Albums</a></li>
+        <li><a href="#highlights">Highlights</a></li>
+      </ul>
+    </li>
+    <li><a href="#mid-period">Mid Period (1966–1967)</a></li>
+    <li><a href="#late-period">Late Period (1968–1970)</a></li>
+    <li><a href="mccartney.html">McCartney (1970)</a></li>
+    <li><a href="#legacy">Legacy & Influence</a></li>
+  </ul>
 </nav>
 
 <section id="formation">

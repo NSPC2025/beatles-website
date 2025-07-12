@@ -24,9 +24,20 @@
       background-color: #222;
       color: white;
       padding: 20px;
-      text-align: center;
       border-radius: 8px;
       margin-bottom: 30px;
+    }
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+    .site-logo {
+      max-width: 80px;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
     nav {
       background-color: #4CAF50;
@@ -86,10 +97,19 @@
       font-family: "Adobe Garamond Pro", Garamond, serif;
       font-style: italic;
     }
-      @media (max-width: 600px) {
+    @media (max-width: 600px) {
       body {
         margin: 10px;
         font-size: 16px;
+      }
+      header {
+        padding: 15px;
+      }
+      .header-content {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        text-align: center;
       }
       nav {
         padding: 10px;
@@ -112,12 +132,11 @@
         margin-bottom: 30px;
         max-width: 100%;
       }
-      header, footer {
+      footer {
         padding: 15px;
       }
-      img {
-        max-width: 100%;
-        height: auto;
+      img.site-logo {
+        max-width: 120px;
       }
     }
   </style>
@@ -125,7 +144,10 @@
 <body>
 
 <header>
-  <h1>The Beatles - Comprehensive Information</h1>
+  <div class="header-content">
+    <img src="https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-cfb0-61f7-b631-8e77b070dd08/raw?se=2025-07-12T11%3A04%3A22Z&sp=r&sv=2024-08-04&sr=b&scid=d507fbd8-d320-5e7e-b007-f6cab7870ee2&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-12T00%3A33%3A17Z&ske=2025-07-13T00%3A33%3A17Z&sks=b&skv=2024-08-04&sig=QXs3UOGTQotw20lxg1D1nEh23IqLpoGCkRQVLnkAuv4%3D" alt="Site Logo" class="site-logo" />
+    <h1>The Beatles - Comprehensive Information</h1>
+  </div>
 </header>
 
 <nav>

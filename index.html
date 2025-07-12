@@ -116,11 +116,11 @@
       .dropdown-content {
         position: absolute;
         top: 100%;
-        left: 0;
-        right: 0;
-        width: 100vw; /* רוחב מלא של המסך */
-        box-sizing: border-box;
-        padding-left: 10px; /* רווח פנימי למניעת חיתוך טקסט */
+        left: 50%;             /* מרכז לרוחב */
+        transform: translateX(-50%);  /* הזזה חזרה כדי למרכז */
+        width: auto;           /* רוחב אוטומטי */
+        max-width: 90vw;       /* רוחב מקסימלי כדי לא לחרוג מהמסך */
+        padding-left: 10px;    /* רווח פנימי למניעת חיתוך */
         padding-right: 10px;
         text-align: center;
         flex-direction: column;

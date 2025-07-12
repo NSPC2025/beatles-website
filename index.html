@@ -103,13 +103,28 @@
       color: white;
     }
 
-    /* במחשב - פתיחה ב-hover עם אנימציית slide-down על עטיפת התפריט */
+    /* במחשב - תפריט אופקי ב-hover עם אנימציית slide-down */
     @media (min-width: 601px) {
       .dropdown-wrapper:hover .dropdown-content {
-        max-height: 600px; /* מספיק להראות את כל התפריט, קצת יותר גבוה */
+        max-height: 100px; /* מספיק לגובה שורה אחת */
         opacity: 1;
         pointer-events: auto;
-        transform: translateX(-50%) translateY(5px); /* הורדתי מעט את התפריט למטה */
+        transform: translateX(-50%) translateY(5px);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 20px;
+        min-width: auto;
+        padding: 8px 20px;
+        white-space: nowrap; /* למנוע שבירה לשורות */
+      }
+      .dropdown-content a {
+        border-bottom: none;
+        border-right: 1px solid #ddd;
+        padding: 12px 20px;
+      }
+      .dropdown-content a:last-child {
+        border-right: none;
       }
     }
 
@@ -140,6 +155,7 @@
         padding: 10px 0;
         overflow: hidden;
         transition: max-height 0.4s ease, opacity 0.4s ease;
+        display: block;
       }
       .dropdown-wrapper.closing .dropdown-content {
         max-height: 0;
@@ -152,6 +168,7 @@
         padding: 14px 0;
         font-weight: bold;
         border-bottom: 1px solid #eee;
+        border-right: none;
       }
       .dropdown-content a:last-child {
         border-bottom: none;

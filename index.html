@@ -12,6 +12,7 @@
       color: #222;
       line-height: 1.6;
     }
+
     header {
       background-color: #222;
       color: white;
@@ -20,12 +21,14 @@
       margin-bottom: 20px;
       text-align: center;
     }
+
     .header-content {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 20px;
     }
+
     .site-logo {
       max-width: 80px;
       height: auto;
@@ -33,18 +36,11 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    /* עטיפת ההמבורגר והתפריט להרחבת אזור ה-hover */
     .dropdown-wrapper {
       position: relative;
-      display: inline-block;
       user-select: none;
       margin: 0 auto;
-      z-index: 1000; /* מעל כל התוכן */
-    }
-
-    .dropdown {
-      position: relative;
-      user-select: none;
+      text-align: center;
     }
 
     .hamburger {
@@ -56,6 +52,7 @@
       justify-content: space-between;
       margin: 0 auto;
     }
+
     .hamburger span {
       display: block;
       height: 4px;
@@ -63,119 +60,79 @@
       border-radius: 2px;
       transition: background-color 0.3s ease;
     }
-    .dropdown-wrapper:hover .hamburger span {
-      background-color: #388E3C;
-    }
 
-    /* תפריט במחשב - אופקי וממוקד מתחת להמבורגר */
     .dropdown-content {
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      pointer-events: none;
       position: absolute;
-      top: 28px;
-      left: 50%;
-      transform: translateX(-50%) translateY(-10px);
+      top: 100%;
+      left: 0;
+      right: 0;
       background-color: white;
-      min-width: 320px;
-      max-width: calc(100vw - 40px); /* למנוע חיתוך מצדדים */
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       border-radius: 6px;
-      text-align: center;
-      transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      padding: 5px 10px;
-      white-space: nowrap;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      transition: max-height 0.4s ease, opacity 0.4s ease;
       z-index: 1000;
     }
+
+    .dropdown-content.open {
+      max-height: 1000px; /* מספיק גבוה לפתיחה */
+      opacity: 1;
+    }
+
     .dropdown-content a {
-      color: #222;
-      padding: 12px 15px;
+      display: block;
+      padding: 14px 16px;
       text-decoration: none;
       font-weight: bold;
-      border-radius: 4px;
-      transition: background-color 0.2s ease;
-      display: inline-block;
-      white-space: nowrap;
+      color: #222;
+      border-bottom: 1px solid #ddd;
+      background-color: white;
+      transition: background-color 0.2s;
     }
+
     .dropdown-content a:hover {
       background-color: #4CAF50;
       color: white;
     }
 
-    /* במחשב - פתיחה ב-hover */
+    /* מחשבים: תפריט אופקי ב-hover */
     @media (min-width: 601px) {
-      .dropdown-wrapper:hover .dropdown-content {
-        max-height: 200px;
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateX(-50%) translateY(0);
-      }
-    }
-
-    /* במובייל - תפריט אנכי, פתיחה בלחיצה, צף מעל התוכן עם אנימציות */
-    @media (max-width: 600px) {
-      .dropdown-wrapper {
-        width: 100%;
-      }
-      .hamburger {
-        display: flex;
-      }
-      /* בטלפון אין פתיחה ב-hover */
-      .dropdown-wrapper:hover .dropdown-content {
-        max-height: 0;
-        opacity: 0;
-        pointer-events: none;
-      }
       .dropdown-content {
         display: flex;
-        flex-direction: column;
-        background-color: white;
-        white-space: normal;
+        flex-direction: row;
+        justify-content: center;
+        padding: 10px;
         position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        border-radius: 0;
-        width: 100%;
-        padding: 0 0;
-        max-height: 0;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        max-height: none;
         opacity: 0;
         pointer-events: none;
-        overflow: hidden;
-        transition: max-height 0.3s ease, opacity 0.3s ease;
-        z-index: 1000;
+        transition: opacity 0.3s ease;
       }
-      .dropdown-wrapper.active .dropdown-content {
-        max-height: 1000px; /* מספיק גדול לפתוח את כל התפריט */
+
+      .dropdown-wrapper:hover .dropdown-content {
         opacity: 1;
         pointer-events: auto;
-        padding: 10px 0;
       }
+
+      .dropdown-content.open {
+        max-height: none;
+      }
+
       .dropdown-content a {
-        display: block;
-        padding: 14px 0;
-        font-weight: bold;
-        border-bottom: 1px solid #eee;
-        white-space: normal;
-      }
-      .dropdown-content a:last-child {
         border-bottom: none;
+        margin: 0 10px;
+      }
+
+      .hamburger {
+        display: none;
       }
     }
 
-    p, li, h1, h2, h3, a {
-      word-break: normal;
-      overflow-wrap: normal;
-      hyphens: none;
-    }
-    h1 {
-      margin: 0;
-    }
     section {
       background-color: white;
       padding: 20px;
@@ -183,31 +140,20 @@
       border-radius: 8px;
       box-shadow: 0 0 10px #ccc;
       max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 0 auto 40px;
     }
+
     h2 {
       color: #4CAF50;
       border-bottom: 2px solid #4CAF50;
       padding-bottom: 5px;
     }
-    h3 {
-      color: #333;
-      margin-top: 20px;
-    }
-    ul {
-      margin-top: 10px;
-      margin-left: 20px;
-    }
+
     footer {
       text-align: center;
       color: #666;
       margin-top: 50px;
       font-size: 0.9em;
-    }
-    .italic-custom-font {
-      font-family: "Adobe Garamond Pro", Garamond, serif;
-      font-style: italic;
     }
   </style>
 </head>
@@ -224,46 +170,40 @@
   </div>
 </header>
 
-<!-- עטיפת התפריט להרחבת אזור ה-hover -->
-<div style="text-align:center; margin-bottom: 30px;">
-  <div class="dropdown-wrapper" aria-label="Main navigation menu">
-    <div class="dropdown">
-      <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <nav class="dropdown-content" role="menu" aria-hidden="true">
-        <a href="#formation" role="menuitem">Formation (1960–1962)</a>
-        <a href="#early-success" role="menuitem">Early Success (1963–1965)</a>
-        <a href="#mid-period" role="menuitem">Mid Period (1966–1967)</a>
-        <a href="#late-period" role="menuitem">Late Period (1968–1970)</a>
-        <a href="mccartney.html" role="menuitem">McCartney (1970)</a>
-        <a href="#legacy" role="menuitem">Legacy & Influence</a>
-      </nav>
-    </div>
+<div class="dropdown-wrapper">
+  <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="dropdown-content" id="menu">
+    <a href="#formation">Formation (1960–1962)</a>
+    <a href="#early-success">Early Success (1963–1965)</a>
+    <a href="#mid-period">Mid Period (1966–1967)</a>
+    <a href="#late-period">Late Period (1968–1970)</a>
+    <a href="mccartney.html">McCartney (1970)</a>
+    <a href="#legacy">Legacy & Influence</a>
   </div>
 </div>
 
-<!-- תוכן האתר -->
 <section id="formation">
   <h2>Formation (1960–1962)</h2>
-  <p>The Beatles were formed in Liverpool in 1960, initially with members John Lennon, Paul McCartney, George Harrison, Stuart Sutcliffe, and Pete Best.</p>
+  <p>The Beatles were formed in Liverpool in 1960...</p>
 </section>
 
 <section id="early-success">
   <h2>Early Success (1963–1965)</h2>
-  <p>The Beatles rise to fame in the UK and later internationally.</p>
+  <p>The Beatles rise to fame...</p>
 </section>
 
 <section id="mid-period">
   <h2>Mid Period (1966–1967)</h2>
-  <p>The Beatles evolve artistically, exploring new musical styles and studio techniques.</p>
+  <p>The Beatles evolve artistically...</p>
 </section>
 
 <section id="late-period">
   <h2>Late Period (1968–1970)</h2>
-  <p>The Beatles release their most ambitious works, but internal tensions rise leading to their breakup.</p>
+  <p>The Beatles release their most ambitious works...</p>
 </section>
 
 <section id="legacy">
@@ -276,8 +216,8 @@
 </footer>
 
 <script>
-  const dropdownWrapper = document.querySelector('.dropdown-wrapper');
-  const hamburger = document.querySelector('.hamburger');
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('menu');
 
   function isMobile() {
     return window.matchMedia("(max-width: 600px)").matches;
@@ -285,23 +225,22 @@
 
   hamburger.addEventListener('click', () => {
     if (isMobile()) {
-      dropdownWrapper.classList.toggle('active');
+      menu.classList.toggle('open');
     }
   });
 
-  // סגירת התפריט אם לוחצים מחוץ לו (גם במחשב וגם במובייל)
-  document.addEventListener('click', (event) => {
-    if (!dropdownWrapper.contains(event.target)) {
-      dropdownWrapper.classList.remove('active');
+  document.addEventListener('click', (e) => {
+    if (isMobile()) {
+      if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
+        menu.classList.remove('open');
+      }
     }
   });
 
-  // סגירת תפריט בלחיצה על קישור במובייל
-  const menuLinks = dropdownWrapper.querySelectorAll('.dropdown-content a');
-  menuLinks.forEach(link => {
+  menu.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       if (isMobile()) {
-        dropdownWrapper.classList.remove('active');
+        menu.classList.remove('open');
       }
     });
   });

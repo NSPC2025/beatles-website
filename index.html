@@ -33,7 +33,6 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    /* תפריט המבורגר */
     .dropdown {
       position: relative;
       display: inline-block;
@@ -63,7 +62,7 @@
     .dropdown-content {
       display: none;
       position: absolute;
-      top: 28px; /* מתחת ל"שלושה הקווים" */
+      top: 28px;
       left: 50%;
       transform: translateX(-50%);
       background-color: white;
@@ -90,12 +89,10 @@
       color: white;
     }
 
-    /* הצגת הרשימה הנפתחת כשעומדים עם העכבר על התפריט */
     .dropdown:hover .dropdown-content {
       display: block;
     }
 
-    /* התאמה למובייל */
     @media (max-width: 600px) {
       .header-content {
         flex-direction: column;
@@ -124,7 +121,6 @@
       }
     }
 
-    /* שאר העיצוב המקורי שלך */
     p, li, h1, h2, h3, a {
       word-break: normal;
       overflow-wrap: normal;

@@ -38,6 +38,8 @@
       display: inline-block;
       user-select: none;
       margin: 0 auto;
+      /* במחשב נרחיב padding כדי לאפשר hover גם על התפריט */
+      padding-bottom: 0; /* יוגדר ב-media query */
     }
 
     .hamburger {
@@ -60,29 +62,24 @@
       background-color: #388E3C;
     }
 
-    /* התפריט - בסיס */
     .dropdown-content {
+      max-height: 0; /* נסגר עם גובה אפס */
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
       position: absolute;
       top: 28px;
       left: 50%;
       transform: translateX(-50%) translateY(-10px);
-      background-color: rgba(255, 255, 255, 0.95);
+      background-color: white;
       min-width: 200px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-      border-radius: 8px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 6px;
       z-index: 1000;
       text-align: left;
-
-      max-height: 0;
-      overflow: hidden;
-      opacity: 0;
-      transition: max-height 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
-      pointer-events: none;
-
-      padding-top: 6px;
+      transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
     }
 
-    /* קישורים בתפריט */
     .dropdown-content a {
       color: #222;
       padding: 12px 16px;
@@ -100,14 +97,16 @@
       color: white;
     }
 
-    /* במחשב - פתיחה ב-hover כולל כשעוברים עם העכבר על התפריט */
+    /* במחשב - פתיחה ב-hover עם אנימציית slide-down */
     @media (min-width: 601px) {
-      .dropdown:hover .dropdown-content,
-      .dropdown-content:hover {
-        max-height: 500px; /* מספיק גבוה כדי להציג את כל התפריט */
+      .dropdown {
+        padding-bottom: 250px; /* להרחיב אזור hover לכיסוי התפריט */
+      }
+      .dropdown:hover .dropdown-content {
+        max-height: 500px; /* מספיק להראות את כל התפריט */
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
         pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
       }
     }
 
@@ -115,31 +114,28 @@
     @media (max-width: 600px) {
       .dropdown {
         width: 100%;
+        padding-bottom: 0; /* מבטל padding למובייל */
       }
       .hamburger {
         display: flex;
       }
+      /* ביטול פתיחה ב-hover במובייל */
       .dropdown:hover .dropdown-content {
         display: none;
       }
       .dropdown.active .dropdown-content {
-        display: block;
-        background-color: white;
+        max-height: none;
+        opacity: 1;
+        pointer-events: auto;
+        position: static;
         box-shadow: 0 8px 16px rgba(0,0,0,0.15);
         border-radius: 0;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
         width: 100%;
         transform: none;
         text-align: center;
         padding: 10px 0;
-
-        max-height: 1000px; /* גדול מאוד כדי לא להגביל */
-        opacity: 1;
-        pointer-events: auto;
-        transition: max-height 0.35s ease, opacity 0.35s ease;
+        overflow: visible;
+        transition: none;
       }
       .dropdown-content a {
         display: block;
@@ -257,6 +253,7 @@
   <p>&copy; 2025 Beatles Info Site</p>
 </footer>
 
+<!-- JavaScript להפעלה במובייל ומחשב -->
 <script>
   const dropdown = document.querySelector('.dropdown');
   const hamburger = document.querySelector('.hamburger');
@@ -265,19 +262,20 @@
     return window.matchMedia("(max-width: 600px)").matches;
   }
 
-  // לחיצה על המבורגר - לפתוח/לסגור במובייל
   hamburger.addEventListener('click', () => {
-    dropdown.classList.toggle('active');
+    if (isMobile()) {
+      dropdown.classList.toggle('active');
+    }
   });
 
-  // סגירת התפריט בלחיצה מחוץ לו - גם במחשב וגם במובייל
+  // סגירת התפריט אם לוחצים מחוץ לו - גם במחשב וגם במובייל
   document.addEventListener('click', (event) => {
     if (!dropdown.contains(event.target)) {
       dropdown.classList.remove('active');
     }
   });
 
-  // סגירת התפריט בלחיצה על קישור במובייל בלבד
+  // סגירת תפריט בלחיצה על קישור (בטלפון)
   const menuLinks = dropdown.querySelectorAll('.dropdown-content a');
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {

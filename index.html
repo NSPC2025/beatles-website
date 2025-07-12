@@ -66,7 +66,7 @@
       background-color: #388E3C;
     }
 
-    /* תפריט ברירת מחדל - נסתר */
+    /* התפריט במחשב - אופקי */
     .dropdown-content {
       max-height: 0;
       overflow: hidden;
@@ -83,58 +83,37 @@
       z-index: 1000;
       text-align: left;
       transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+      display: flex;
+      gap: 10px;
+      padding: 0 10px;
     }
-
     .dropdown-content a {
       color: #222;
-      padding: 12px 16px;
+      padding: 12px 10px;
       text-decoration: none;
-      display: block;
       font-weight: bold;
-      border-bottom: 1px solid #ddd;
-      transition: background-color 0.2s ease;
-    }
-    .dropdown-content a:last-child {
       border-bottom: none;
+      white-space: nowrap;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+      display: inline-block;
     }
     .dropdown-content a:hover {
       background-color: #4CAF50;
       color: white;
     }
 
-    /* במחשב - תפריט אופקי עם אנימציית fade + slide down/up */
+    /* במחשב - פתיחה ב-hover עם אנימציית slide-down על עטיפת התפריט */
     @media (min-width: 601px) {
-      .dropdown-content {
-        max-height: none !important;
-        overflow: visible !important;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        gap: 20px;
-        min-width: auto;
-        padding: 8px 20px;
-        white-space: nowrap;
-        pointer-events: none;
-        opacity: 0;
-        transform: translateY(-10px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-      }
       .dropdown-wrapper:hover .dropdown-content {
-        pointer-events: auto;
+        max-height: 200px; /* מספיק להראות את כל התפריט */
         opacity: 1;
-        transform: translateY(0);
-      }
-      .dropdown-content a {
-        border-bottom: none;
-        border-right: 1px solid #ddd;
-        padding: 12px 20px;
-      }
-      .dropdown-content a:last-child {
-        border-right: none;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
       }
     }
 
-    /* במובייל - פתיחה בלחיצה ועיצוב פרוס לרוחב */
+    /* במובייל - פתיחה בלחיצה ועיצוב צף, לא דוחף תוכן */
     @media (max-width: 600px) {
       .dropdown-wrapper {
         width: 100%;
@@ -142,7 +121,6 @@
       .hamburger {
         display: flex;
       }
-      /* ביטול פתיחה ב-hover במובייל */
       .dropdown-wrapper:hover .dropdown-content {
         max-height: 0;
         opacity: 0;
@@ -152,7 +130,10 @@
         max-height: 1000px;
         opacity: 1;
         pointer-events: auto;
-        position: static;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
         box-shadow: 0 8px 16px rgba(0,0,0,0.15);
         border-radius: 0;
         width: 100%;
@@ -161,12 +142,14 @@
         padding: 10px 0;
         overflow: visible;
         transition: max-height 0.3s ease, opacity 0.3s ease;
+        z-index: 1000;
       }
       .dropdown-content a {
         display: block;
         padding: 14px 0;
         font-weight: bold;
         border-bottom: 1px solid #eee;
+        white-space: normal;
       }
       .dropdown-content a:last-child {
         border-bottom: none;

@@ -37,7 +37,8 @@
       position: relative;
       display: inline-block;
       user-select: none;
-      min-height: 52px; /* גובה מינימום כולל ההמבורגר + קצת רווח */
+      min-height: 52px;
+      text-align: center;
     }
 
     .dropdown {
@@ -61,6 +62,9 @@
       border-radius: 2px;
       transition: background-color 0.3s ease;
     }
+    .dropdown-wrapper:hover .hamburger span {
+      background-color: #388E3C;
+    }
 
     .dropdown-content {
       display: none;
@@ -78,6 +82,7 @@
       padding: 10px 16px;
       transition: background-color 0.2s ease;
       display: block;
+      white-space: nowrap;
     }
     .dropdown-content a:hover {
       background-color: #4CAF50;
@@ -86,15 +91,9 @@
 
     /* Desktop: horizontal dropdown on hover */
     @media (min-width: 601px) {
-      .dropdown-wrapper {
-        text-align: center;
-        /* אין padding שמזיז תוכן */
-      }
       .dropdown-wrapper:hover .dropdown-content {
         display: flex;
-      }
-      .dropdown-content {
-        top: 36px; /* מיקום התפריט יחסית להמבורגר */
+        top: 36px;
         left: 50%;
         transform: translateX(-50%);
         flex-direction: row;
@@ -102,14 +101,13 @@
         padding: 10px;
         white-space: nowrap;
         position: absolute;
-        z-index: 1000; /* מעל כל התוכן */
-      }
-      .dropdown:hover .hamburger span {
-        background-color: #388E3C;
+        z-index: 1000;
+        min-width: 250px;
+        justify-content: center;
       }
     }
 
-    /* Mobile: dropdown activated by click */
+    /* Mobile: vertical dropdown activated by click with animations */
     @media (max-width: 600px) {
       .dropdown-wrapper {
         width: 100%;
@@ -122,12 +120,21 @@
         width: 100%;
         text-align: center;
         flex-direction: column;
-        display: none;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+        display: flex;
+        pointer-events: none;
       }
       .dropdown-wrapper.active .dropdown-content {
-        display: flex;
-        flex-direction: column;
-        animation: slideDown 0.3s ease forwards;
+        max-height: 500px;
+        opacity: 1;
+        pointer-events: auto;
+        animation: slideDown 0.3s forwards;
+      }
+      .dropdown-wrapper.closing .dropdown-content {
+        animation: slideUp 0.3s forwards;
       }
       .dropdown-content a {
         padding: 14px 0;
@@ -145,6 +152,16 @@
         to {
           opacity: 1;
           transform: translateY(0);
+        }
+      }
+      @keyframes slideUp {
+        from {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        to {
+          opacity: 0;
+          transform: translateY(-10px);
         }
       }
     }
@@ -225,15 +242,43 @@
     return window.matchMedia('(max-width: 600px)').matches;
   }
 
+  let isAnimating = false;
+
   hamburger.addEventListener('click', () => {
-    if (isMobile()) {
-      dropdownWrapper.classList.toggle('active');
+    if (!isMobile()) return;
+
+    if (dropdownWrapper.classList.contains('active')) {
+      // להתחיל אנימציית סגירה
+      if (isAnimating) return; // לא מתחיל אנימציה נוספת אם כבר רצה
+
+      isAnimating = true;
+      dropdownWrapper.classList.add('closing');
+      dropdownWrapper.classList.remove('active');
+
+      // אחרי שהאנימציה מסתיימת - להסיר מחלקה closing ולהסתיר תפריט
+      setTimeout(() => {
+        dropdownWrapper.classList.remove('closing');
+        isAnimating = false;
+      }, 300);
+    } else {
+      dropdownWrapper.classList.add('active');
     }
   });
 
+  // סגירת תפריט בלחיצה מחוץ (גם במחשב וגם במובייל)
   document.addEventListener('click', (e) => {
     if (!dropdownWrapper.contains(e.target)) {
-      dropdownWrapper.classList.remove('active');
+      if (isMobile() && dropdownWrapper.classList.contains('active') && !isAnimating) {
+        isAnimating = true;
+        dropdownWrapper.classList.add('closing');
+        dropdownWrapper.classList.remove('active');
+        setTimeout(() => {
+          dropdownWrapper.classList.remove('closing');
+          isAnimating = false;
+        }, 300);
+      } else {
+        dropdownWrapper.classList.remove('active');
+      }
     }
   });
 </script>

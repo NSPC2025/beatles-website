@@ -73,7 +73,6 @@
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       border-radius: 6px;
       z-index: 1000;
-      white-space: nowrap;
     }
 
     .dropdown-content a {
@@ -114,27 +113,25 @@
         width: 100%;
       }
       .dropdown-content {
-        display: block; /* תמיד block כדי לאפשר transition */
+        display: block;
         max-height: 0;
         overflow: hidden;
         opacity: 0;
-        transition:
-          max-height 0.35s ease-in-out,
-          opacity 0.35s ease-in-out;
-        position: absolute; /* מיקום מוחלט למנוע הזזה של התוכן */
-        top: 52px; /* מתחת להמבורגר */
+        transition: max-height 0.35s ease, opacity 0.35s ease;
+        position: absolute;
+        top: 52px;
         left: 0;
         right: 0;
-        width: auto;
+        width: 100%;
         background-color: white;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        border-radius: 6px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+        border-radius: 0;
         padding: 0;
-        margin: 0 auto;
-        text-align: center;
+        margin-top: 0;
+        z-index: 999;
       }
       .dropdown-wrapper.active .dropdown-content {
-        max-height: 500px; /* מספיק להראות את כל התפריט */
+        max-height: 500px;
         opacity: 1;
         padding: 10px 0;
       }
@@ -184,7 +181,7 @@
 <div style="text-align:center; margin-bottom: 30px;">
   <div class="dropdown-wrapper" aria-label="Main navigation menu">
     <div class="dropdown">
-      <div class="hamburger" aria-label="Menu" role="button" tabindex="0" aria-expanded="false">
+      <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
         <span></span>
         <span></span>
         <span></span>
@@ -219,31 +216,21 @@
 <script>
   const dropdownWrapper = document.querySelector('.dropdown-wrapper');
   const hamburger = document.querySelector('.hamburger');
-  const dropdownContent = document.querySelector('.dropdown-content');
 
-  hamburger.addEventListener('click', (e) => {
-    e.stopPropagation();
+  hamburger.addEventListener('click', () => {
     dropdownWrapper.classList.toggle('active');
-    const expanded = dropdownWrapper.classList.contains('active');
-    hamburger.setAttribute('aria-expanded', expanded);
-    dropdownContent.setAttribute('aria-hidden', !expanded);
   });
 
   document.addEventListener('click', (e) => {
     if (!dropdownWrapper.contains(e.target)) {
       dropdownWrapper.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', false);
-      dropdownContent.setAttribute('aria-hidden', true);
     }
   });
 
-  // Close menu on link click (mobile)
   const menuLinks = dropdownWrapper.querySelectorAll('.dropdown-content a');
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
       dropdownWrapper.classList.remove('active');
-      hamburger.setAttribute('aria-expanded', false);
-      dropdownContent.setAttribute('aria-hidden', true);
     });
   });
 </script>

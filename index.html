@@ -113,8 +113,8 @@
         width: 100%;
       }
       .dropdown-content {
-        position: absolute; /* שונה מ-fixed ל-absolute */
-        top: 100%;          /* מתחת להמבורגר */
+        position: absolute;
+        top: 100%;
         left: 0;
         right: 0;
         min-width: 100%;
@@ -132,9 +132,10 @@
         z-index: 1500;
       }
       .dropdown-wrapper.active .dropdown-content {
-        max-height: 500px;
+        max-height: 80vh;
         opacity: 1;
         pointer-events: auto;
+        overflow-y: auto;
         animation: slideDown 0.3s forwards;
       }
       .dropdown-wrapper.closing .dropdown-content {

@@ -41,7 +41,6 @@
 
     .dropdown {
       position: relative;
-      display: inline-block;
     }
 
     .hamburger {
@@ -89,11 +88,9 @@
     @media (min-width: 601px) {
       .dropdown-wrapper {
         text-align: center;
+        padding-bottom: 10px; /* מוסיף מרווח כדי למנוע חיתוך בהורדה */
       }
-      .dropdown {
-        display: inline-block;
-      }
-      .dropdown:hover .dropdown-content {
+      .dropdown-wrapper:hover .dropdown-content {
         display: flex;
       }
       .dropdown-content {
@@ -104,7 +101,6 @@
         gap: 10px;
         padding: 10px;
         white-space: nowrap;
-        transition: none;
       }
       .hamburger {
         display: flex;
@@ -128,7 +124,6 @@
         display: none;
         opacity: 0;
         transform: translateY(-10px);
-        animation: none;
       }
       .dropdown-wrapper.active .dropdown-content {
         display: flex;

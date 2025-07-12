@@ -66,7 +66,7 @@
       background-color: #388E3C;
     }
 
-    /* התפריט במחשב - אופקי */
+    /* תפריט במחשב - אופקי וממוקד מתחת להמבורגר */
     .dropdown-content {
       max-height: 0;
       overflow: hidden;
@@ -77,23 +77,25 @@
       left: 50%;
       transform: translateX(-50%) translateY(-10px);
       background-color: white;
-      min-width: 200px;
+      min-width: 300px;
+      max-width: 600px;
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       border-radius: 6px;
       z-index: 1000;
-      text-align: left;
+      text-align: center;
       transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
       display: flex;
-      gap: 10px;
-      padding: 0 10px;
+      gap: 15px;
+      justify-content: center;
+      padding: 5px 10px;
+      white-space: nowrap;
     }
     .dropdown-content a {
       color: #222;
-      padding: 12px 10px;
+      padding: 12px 15px;
       text-decoration: none;
       font-weight: bold;
       border-bottom: none;
-      white-space: nowrap;
       border-radius: 4px;
       transition: background-color 0.2s ease;
       display: inline-block;
@@ -103,17 +105,17 @@
       color: white;
     }
 
-    /* במחשב - פתיחה ב-hover עם אנימציית slide-down על עטיפת התפריט */
+    /* במחשב - פתיחה ב-hover */
     @media (min-width: 601px) {
       .dropdown-wrapper:hover .dropdown-content {
-        max-height: 200px; /* מספיק להראות את כל התפריט */
+        max-height: 200px;
         opacity: 1;
         pointer-events: auto;
         transform: translateX(-50%) translateY(0);
       }
     }
 
-    /* במובייל - פתיחה בלחיצה ועיצוב צף, לא דוחף תוכן */
+    /* במובייל - תפריט אנכי, פתיחה בלחיצה, צף מעל התוכן */
     @media (max-width: 600px) {
       .dropdown-wrapper {
         width: 100%;
@@ -121,6 +123,7 @@
       .hamburger {
         display: flex;
       }
+      /* בטלפון אין פתיחה ב-hover */
       .dropdown-wrapper:hover .dropdown-content {
         max-height: 0;
         opacity: 0;
@@ -143,6 +146,17 @@
         overflow: visible;
         transition: max-height 0.3s ease, opacity 0.3s ease;
         z-index: 1000;
+        display: block;
+        flex-direction: column;
+      }
+      .dropdown-content {
+        display: none; /* ברירת מחדל במובייל, יוצג רק כש-active */
+        flex-direction: column;
+        background-color: white;
+        white-space: normal;
+      }
+      .dropdown-wrapper.active .dropdown-content {
+        display: flex;
       }
       .dropdown-content a {
         display: block;
@@ -221,14 +235,14 @@
         <span></span>
         <span></span>
       </div>
-      <div class="dropdown-content" role="menu" aria-hidden="true">
+      <nav class="dropdown-content" role="menu" aria-hidden="true">
         <a href="#formation" role="menuitem">Formation (1960–1962)</a>
         <a href="#early-success" role="menuitem">Early Success (1963–1965)</a>
         <a href="#mid-period" role="menuitem">Mid Period (1966–1967)</a>
         <a href="#late-period" role="menuitem">Late Period (1968–1970)</a>
         <a href="mccartney.html" role="menuitem">McCartney (1970)</a>
         <a href="#legacy" role="menuitem">Legacy & Influence</a>
-      </div>
+      </nav>
     </div>
   </div>
 </div>
@@ -277,7 +291,7 @@
     }
   });
 
-  // סגירת התפריט אם לוחצים מחוץ לו במחשב ובמובייל
+  // סגירת התפריט אם לוחצים מחוץ לו (גם במחשב וגם במובייל)
   document.addEventListener('click', (event) => {
     if (!dropdownWrapper.contains(event.target)) {
       dropdownWrapper.classList.remove('active');

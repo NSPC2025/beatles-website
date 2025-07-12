@@ -19,13 +19,19 @@
       padding: 20px;
       border-radius: 8px;
       margin-bottom: 20px;
-      text-align: center;
     }
 
     .header-content {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .site-title {
+      display: flex;
+      align-items: center;
       gap: 20px;
     }
 
@@ -36,79 +42,20 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    .dropdown-wrapper {
-      position: relative;
-      display: inline-block;
-      user-select: none;
-      min-height: 52px;
-      text-align: center;
-    }
-
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-
-    .hamburger {
-      cursor: pointer;
-      width: 30px;
-      height: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      margin: 0 auto;
-    }
-
-    .hamburger span {
-      display: block;
-      height: 4px;
+    .mobile-link {
       background-color: #4CAF50;
-      border-radius: 2px;
+      color: white;
+      text-decoration: none;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.9em;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
       transition: background-color 0.3s ease;
     }
 
-    .dropdown-wrapper:hover .hamburger span {
+    .mobile-link:hover {
       background-color: #388E3C;
-    }
-
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: white;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-      border-radius: 6px;
-      z-index: 1000;
-    }
-
-    .dropdown-content a {
-      color: #222;
-      text-decoration: none;
-      font-weight: bold;
-      padding: 10px 16px;
-      transition: background-color 0.2s ease;
-      display: block;
-      white-space: nowrap;
-    }
-
-    .dropdown-content a:hover {
-      background-color: #4CAF50;
-      color: white;
-    }
-
-    /* Desktop: horizontal dropdown on hover */
-    .dropdown-wrapper:hover .dropdown-content {
-      display: flex;
-      top: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      flex-direction: row;
-      gap: 10px;
-      padding: 10px;
-      white-space: nowrap;
-      position: absolute;
-      z-index: 1000;
-      min-width: 250px;
-      justify-content: center;
     }
 
     section {
@@ -140,33 +87,14 @@
 
 <header>
   <div class="header-content">
-    <img src="https://raw.githubusercontent.com/NSPC2025/beatles-website/refs/heads/main/Beatles%20Info%20Site%20Logo%20Design.png" alt="Site Logo" class="site-logo" />
-    <h1>The Beatles - Comprehensive Information</h1>
+    <div class="site-title">
+      <img src="https://raw.githubusercontent.com/NSPC2025/beatles-website/refs/heads/main/Beatles%20Info%20Site%20Logo%20Design.png" alt="Site Logo" class="site-logo" />
+      <h1>The Beatles - Comprehensive Information</h1>
+    </div>
+    <a href="mobile.html" class="mobile-link">Mobile Version</a>
   </div>
 </header>
 
-<!-- Dropdown menu -->
-<div style="text-align:center; margin-bottom: 30px;">
-  <div class="dropdown-wrapper" aria-label="Main navigation menu">
-    <div class="dropdown">
-      <div class="hamburger" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div class="dropdown-content" role="menu" aria-hidden="true">
-        <a href="#formation" role="menuitem">Formation (1960–1962)</a>
-        <a href="#early-success" role="menuitem">Early Success (1963–1965)</a>
-        <a href="#mid-period" role="menuitem">Mid Period (1966–1967)</a>
-        <a href="#late-period" role="menuitem">Late Period (1968–1970)</a>
-        <a href="mccartney.html" role="menuitem">McCartney (1970)</a>
-        <a href="#legacy" role="menuitem">Legacy & Influence</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Page content -->
 <section id="formation">
   <h2>Formation (1960–1962)</h2>
   <p>The Beatles were formed in Liverpool in 1960...</p>

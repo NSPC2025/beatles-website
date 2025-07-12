@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Beatles - Comprehensive Information</title>
   <style>
     body {
@@ -81,10 +82,34 @@
       display: table;
       clear: both;
     }
-    /* פונט Adobe Garamond Pro לכתב נטוי של המילה McCartney */
     .italic-custom-font {
       font-family: "Adobe Garamond Pro", Garamond, serif;
       font-style: italic;
+    }
+    @media (max-width: 600px) {
+    body {
+      margin: 10px;
+      font-size: 16px;
+    }
+    nav {
+      padding: 10px;
+    }
+    nav a {
+      margin: 0 8px;
+      padding: 8px 6px;
+      font-size: 14px;
+    }
+    section {
+      padding: 15px;
+      margin-bottom: 30px;
+      max-width: 100%;
+    }
+    header, footer {
+      padding: 15px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
     }
   </style>
 </head>

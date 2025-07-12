@@ -89,7 +89,7 @@
       color: white;
     }
 
-    /* Desktop: horizontal dropdown on hover */
+    /* Desktop: horizontal dropdown on hover — ללא שינוי! */
     @media (min-width: 601px) {
       .dropdown-wrapper:hover .dropdown-content {
         display: flex;
@@ -107,31 +107,24 @@
       }
     }
 
-    /* Mobile: vertical dropdown activated by click with animations */
+    /* Mobile: vertical dropdown activated by click with slide animations */
     @media (max-width: 600px) {
       .dropdown-wrapper {
-        width: 100vw;
-        max-width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
+        width: 100%;
         box-sizing: border-box;
       }
       .dropdown-content {
+        /* שינויים במובייל בלבד */
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        width: 100vw;
-        max-width: 100vw;
+        width: 100%;
         box-sizing: border-box;
         text-align: center;
         flex-direction: column;
         max-height: 0;
-        overflow-y: auto;
-        overflow-x: auto; /* מאפשר גלילה אופקית */
+        overflow: hidden;
         opacity: 0;
         transition: max-height 0.3s ease, opacity 0.3s ease;
         display: flex;

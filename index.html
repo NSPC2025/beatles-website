@@ -33,13 +33,17 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
 
-    .dropdown {
+    /* עטיפת ההמבורגר והתפריט להרחבת אזור ה-hover */
+    .dropdown-wrapper {
       position: relative;
       display: inline-block;
       user-select: none;
       margin: 0 auto;
-      /* במחשב נרחיב padding כדי לאפשר hover גם על התפריט */
-      padding-bottom: 0; /* יוגדר ב-media query */
+    }
+
+    .dropdown {
+      position: relative;
+      user-select: none;
     }
 
     .hamburger {
@@ -58,12 +62,12 @@
       border-radius: 2px;
       transition: background-color 0.3s ease;
     }
-    .dropdown:hover .hamburger span {
+    .dropdown-wrapper:hover .hamburger span {
       background-color: #388E3C;
     }
 
     .dropdown-content {
-      max-height: 0; /* נסגר עם גובה אפס */
+      max-height: 0;
       overflow: hidden;
       opacity: 0;
       pointer-events: none;
@@ -97,12 +101,9 @@
       color: white;
     }
 
-    /* במחשב - פתיחה ב-hover עם אנימציית slide-down */
+    /* במחשב - פתיחה ב-hover עם אנימציית slide-down על עטיפת התפריט */
     @media (min-width: 601px) {
-      .dropdown {
-        padding-bottom: 250px; /* להרחיב אזור hover לכיסוי התפריט */
-      }
-      .dropdown:hover .dropdown-content {
+      .dropdown-wrapper:hover .dropdown-content {
         max-height: 500px; /* מספיק להראות את כל התפריט */
         opacity: 1;
         pointer-events: auto;
@@ -112,18 +113,19 @@
 
     /* במובייל - פתיחה בלחיצה ועיצוב פרוס לרוחב */
     @media (max-width: 600px) {
-      .dropdown {
+      .dropdown-wrapper {
         width: 100%;
-        padding-bottom: 0; /* מבטל padding למובייל */
       }
       .hamburger {
         display: flex;
       }
       /* ביטול פתיחה ב-hover במובייל */
-      .dropdown:hover .dropdown-content {
-        display: none;
+      .dropdown-wrapper:hover .dropdown-content {
+        max-height: 0;
+        opacity: 0;
+        pointer-events: none;
       }
-      .dropdown.active .dropdown-content {
+      .dropdown-wrapper.active .dropdown-content {
         max-height: none;
         opacity: 1;
         pointer-events: auto;
@@ -204,21 +206,23 @@
   </div>
 </header>
 
-<!-- תפריט ניווט -->
+<!-- עטיפת התפריט להרחבת אזור ה-hover -->
 <div style="text-align:center; margin-bottom: 30px;">
-  <div class="dropdown" aria-label="Main navigation menu">
-    <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="dropdown-content" role="menu" aria-hidden="true">
-      <a href="#formation" role="menuitem">Formation (1960–1962)</a>
-      <a href="#early-success" role="menuitem">Early Success (1963–1965)</a>
-      <a href="#mid-period" role="menuitem">Mid Period (1966–1967)</a>
-      <a href="#late-period" role="menuitem">Late Period (1968–1970)</a>
-      <a href="mccartney.html" role="menuitem">McCartney (1970)</a>
-      <a href="#legacy" role="menuitem">Legacy & Influence</a>
+  <div class="dropdown-wrapper" aria-label="Main navigation menu">
+    <div class="dropdown">
+      <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="dropdown-content" role="menu" aria-hidden="true">
+        <a href="#formation" role="menuitem">Formation (1960–1962)</a>
+        <a href="#early-success" role="menuitem">Early Success (1963–1965)</a>
+        <a href="#mid-period" role="menuitem">Mid Period (1966–1967)</a>
+        <a href="#late-period" role="menuitem">Late Period (1968–1970)</a>
+        <a href="mccartney.html" role="menuitem">McCartney (1970)</a>
+        <a href="#legacy" role="menuitem">Legacy & Influence</a>
+      </div>
     </div>
   </div>
 </div>
@@ -253,9 +257,8 @@
   <p>&copy; 2025 Beatles Info Site</p>
 </footer>
 
-<!-- JavaScript להפעלה במובייל ומחשב -->
 <script>
-  const dropdown = document.querySelector('.dropdown');
+  const dropdownWrapper = document.querySelector('.dropdown-wrapper');
   const hamburger = document.querySelector('.hamburger');
 
   function isMobile() {
@@ -264,23 +267,23 @@
 
   hamburger.addEventListener('click', () => {
     if (isMobile()) {
-      dropdown.classList.toggle('active');
+      dropdownWrapper.classList.toggle('active');
     }
   });
 
-  // סגירת התפריט אם לוחצים מחוץ לו - גם במחשב וגם במובייל
+  // סגירת התפריט אם לוחצים מחוץ לו במחשב ובמובייל
   document.addEventListener('click', (event) => {
-    if (!dropdown.contains(event.target)) {
-      dropdown.classList.remove('active');
+    if (!dropdownWrapper.contains(event.target)) {
+      dropdownWrapper.classList.remove('active');
     }
   });
 
-  // סגירת תפריט בלחיצה על קישור (בטלפון)
-  const menuLinks = dropdown.querySelectorAll('.dropdown-content a');
+  // סגירת תפריט בלחיצה על קישור במובייל
+  const menuLinks = dropdownWrapper.querySelectorAll('.dropdown-content a');
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
       if (isMobile()) {
-        dropdown.classList.remove('active');
+        dropdownWrapper.classList.remove('active');
       }
     });
   });

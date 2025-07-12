@@ -39,7 +39,6 @@
       display: inline-block;
       user-select: none;
       margin: 0 auto;
-      padding-bottom: 10px; /* הרחבה למטה כדי להגדיל אזור ה-hover */
     }
 
     .dropdown {
@@ -67,7 +66,7 @@
       background-color: #388E3C;
     }
 
-    /* התפריט - התחלת מצב סגור */
+    /* תפריט ברירת מחדל - נסתר */
     .dropdown-content {
       max-height: 0;
       overflow: hidden;
@@ -103,20 +102,27 @@
       color: white;
     }
 
-    /* במחשב - תפריט אופקי ב-hover עם אנימציית slide-down */
+    /* במחשב - תפריט אופקי עם אנימציית fade + slide down/up */
     @media (min-width: 601px) {
-      .dropdown-wrapper:hover .dropdown-content {
-        max-height: 100px; /* מספיק לגובה שורה אחת */
-        opacity: 1;
-        pointer-events: auto;
-        transform: translateX(-50%) translateY(5px);
+      .dropdown-content {
+        max-height: none !important;
+        overflow: visible !important;
         display: flex;
         flex-direction: row;
         justify-content: center;
         gap: 20px;
         min-width: auto;
         padding: 8px 20px;
-        white-space: nowrap; /* למנוע שבירה לשורות */
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+      }
+      .dropdown-wrapper:hover .dropdown-content {
+        pointer-events: auto;
+        opacity: 1;
+        transform: translateY(0);
       }
       .dropdown-content a {
         border-bottom: none;
@@ -128,7 +134,7 @@
       }
     }
 
-    /* במובייל - פתיחה בלחיצה ועיצוב פרוס לרוחב עם אנימציית slide-down ו-slide-up */
+    /* במובייל - פתיחה בלחיצה ועיצוב פרוס לרוחב */
     @media (max-width: 600px) {
       .dropdown-wrapper {
         width: 100%;
@@ -143,7 +149,7 @@
         pointer-events: none;
       }
       .dropdown-wrapper.active .dropdown-content {
-        max-height: 500px; /* הגבלת גובה אנימציית פתיחה */
+        max-height: 1000px;
         opacity: 1;
         pointer-events: auto;
         position: static;
@@ -153,22 +159,14 @@
         transform: none;
         text-align: center;
         padding: 10px 0;
-        overflow: hidden;
-        transition: max-height 0.4s ease, opacity 0.4s ease;
-        display: block;
-      }
-      .dropdown-wrapper.closing .dropdown-content {
-        max-height: 0;
-        opacity: 0;
-        pointer-events: none;
-        transition: max-height 0.4s ease, opacity 0.4s ease;
+        overflow: visible;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
       }
       .dropdown-content a {
         display: block;
         padding: 14px 0;
         font-weight: bold;
         border-bottom: 1px solid #eee;
-        border-right: none;
       }
       .dropdown-content a:last-child {
         border-bottom: none;
@@ -290,35 +288,16 @@
     return window.matchMedia("(max-width: 600px)").matches;
   }
 
-  // פתיחה וסגירה בלחיצה במובייל עם אנימציית slide-down ו-slide-up
   hamburger.addEventListener('click', () => {
     if (isMobile()) {
-      if (dropdownWrapper.classList.contains('active')) {
-        // סגירה עם אנימציה
-        dropdownWrapper.classList.add('closing');
-        setTimeout(() => {
-          dropdownWrapper.classList.remove('active', 'closing');
-        }, 400); // משך האנימציה ב-CSS
-      } else {
-        dropdownWrapper.classList.add('active');
-      }
+      dropdownWrapper.classList.toggle('active');
     }
   });
 
   // סגירת התפריט אם לוחצים מחוץ לו במחשב ובמובייל
   document.addEventListener('click', (event) => {
     if (!dropdownWrapper.contains(event.target)) {
-      if (isMobile()) {
-        if (dropdownWrapper.classList.contains('active')) {
-          dropdownWrapper.classList.add('closing');
-          setTimeout(() => {
-            dropdownWrapper.classList.remove('active', 'closing');
-          }, 400);
-        }
-      } else {
-        // במחשב סגירה מיידית
-        dropdownWrapper.classList.remove('active');
-      }
+      dropdownWrapper.classList.remove('active');
     }
   });
 
@@ -327,10 +306,7 @@
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
       if (isMobile()) {
-        dropdownWrapper.classList.add('closing');
-        setTimeout(() => {
-          dropdownWrapper.classList.remove('active', 'closing');
-        }, 400);
+        dropdownWrapper.classList.remove('active');
       }
     });
   });

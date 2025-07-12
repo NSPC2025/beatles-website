@@ -10,13 +10,12 @@
       margin: 20px;
       background-color: #fafafa;
       color: #222;
-      line-height: 1.8; /* הגדלת רווח בין שורות */
+      line-height: 1.6;
     }
 
     main {
       max-width: 960px;
       margin: 0 auto;
-      padding: 0 10px;
     }
 
     section {
@@ -47,10 +46,6 @@
       margin: 20px 0;
     }
 
-    p {
-      margin-bottom: 1.2em; /* רווח בין פסקאות */
-    }
-
     .italic-custom-font {
       font-family: "Adobe Garamond Pro", Garamond, serif;
       font-style: italic;
@@ -73,19 +68,12 @@
       color: #4CAF50;
       font-weight: bold;
       text-decoration: none;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
     }
-
-    .back-link a:hover,
-    .back-link a:focus {
+    .back-link a:hover {
       color: #388E3C;
       text-decoration: underline;
-    }
-
-    .clearfix::after {
-      content: "";
-      display: block;
-      clear: both;
+      cursor: pointer;
     }
 
     @media (max-width: 600px) {
@@ -149,7 +137,7 @@
 
       <p>All songs composed by Paul McCartney.</p>
 
-      <div class="clearfix"></div>
+      <div style="clear: both;"></div>
 
       <hr>
 

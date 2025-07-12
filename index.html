@@ -107,44 +107,6 @@
       }
     }
 
-    /* Mobile: vertical dropdown activated by click with slide animations */
-    @media (max-width: 600px) {
-      .dropdown-wrapper {
-        width: 100%;
-      }
-      .dropdown-content {
-        display: block;
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height 0.35s ease, opacity 0.35s ease;
-        position: absolute;
-        top: 52px;
-        left: 0;
-        right: 0;
-        width: 100%;
-        background-color: white;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-        border-radius: 0;
-        padding: 0;
-        margin-top: 0;
-        z-index: 999;
-      }
-      .dropdown-wrapper.active .dropdown-content {
-        max-height: 500px;
-        opacity: 1;
-        padding: 10px 0;
-      }
-      .dropdown-content a {
-        padding: 12px 16px;
-        border-bottom: 1px solid #eee;
-        white-space: normal;
-      }
-      .dropdown-content a:last-child {
-        border-bottom: none;
-      }
-    }
-
     section {
       background-color: white;
       padding: 20px;
@@ -214,25 +176,7 @@
 </footer>
 
 <script>
-  const dropdownWrapper = document.querySelector('.dropdown-wrapper');
-  const hamburger = document.querySelector('.hamburger');
-
-  hamburger.addEventListener('click', () => {
-    dropdownWrapper.classList.toggle('active');
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!dropdownWrapper.contains(e.target)) {
-      dropdownWrapper.classList.remove('active');
-    }
-  });
-
-  const menuLinks = dropdownWrapper.querySelectorAll('.dropdown-content a');
-  menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      dropdownWrapper.classList.remove('active');
-    });
-  });
+  // לא צריך JS לשום פעולה במחשב כי התפריט נפתח ב-hover בלבד
 </script>
 
 </body>

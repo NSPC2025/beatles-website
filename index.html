@@ -107,20 +107,21 @@
       }
     }
 
-    /* Mobile: vertical dropdown activated by click with slide animations */
+    /* Mobile: vertical dropdown activated by click עם תיקוני רוחב ואנימציות */
     @media (max-width: 600px) {
       .dropdown-wrapper {
         width: 100%;
         box-sizing: border-box;
       }
       .dropdown-content {
-        /* שינויים במובייל בלבד */
         position: absolute;
         top: 100%;
         left: 0;
         right: 0;
-        width: 100%;
+        width: 100vw; /* רוחב מלא של המסך */
         box-sizing: border-box;
+        padding-left: 10px; /* רווח פנימי למניעת חיתוך טקסט */
+        padding-right: 10px;
         text-align: center;
         flex-direction: column;
         max-height: 0;
@@ -147,6 +148,7 @@
         padding: 14px 20px;
         border-bottom: 1px solid #eee;
         white-space: normal;
+        word-break: break-word; /* שבירת מילים במידת הצורך */
       }
       .dropdown-content a:last-child {
         border-bottom: none;

@@ -12,7 +12,6 @@
       color: #222;
       line-height: 1.6;
     }
-
     header {
       background-color: #222;
       color: white;
@@ -21,14 +20,12 @@
       margin-bottom: 20px;
       text-align: center;
     }
-
     .header-content {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 20px;
     }
-
     .site-logo {
       max-width: 80px;
       height: auto;
@@ -38,9 +35,13 @@
 
     .dropdown-wrapper {
       position: relative;
+      display: inline-block;
       user-select: none;
-      margin: 0 auto;
-      text-align: center;
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
     }
 
     .hamburger {
@@ -52,7 +53,6 @@
       justify-content: space-between;
       margin: 0 auto;
     }
-
     .hamburger span {
       display: block;
       height: 4px;
@@ -62,74 +62,87 @@
     }
 
     .dropdown-content {
+      display: none;
       position: absolute;
-      top: 100%;
-      left: 0;
-      right: 0;
       background-color: white;
       box-shadow: 0 8px 16px rgba(0,0,0,0.2);
       border-radius: 6px;
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      transition: max-height 0.4s ease, opacity 0.4s ease;
       z-index: 1000;
     }
 
-    .dropdown-content.open {
-      max-height: 1000px; /* מספיק גבוה לפתיחה */
-      opacity: 1;
-    }
-
     .dropdown-content a {
-      display: block;
-      padding: 14px 16px;
+      color: #222;
       text-decoration: none;
       font-weight: bold;
-      color: #222;
-      border-bottom: 1px solid #ddd;
-      background-color: white;
-      transition: background-color 0.2s;
+      padding: 10px 16px;
+      transition: background-color 0.2s ease;
+      display: block;
     }
-
     .dropdown-content a:hover {
       background-color: #4CAF50;
       color: white;
     }
 
-    /* מחשבים: תפריט אופקי ב-hover */
+    /* Desktop: horizontal dropdown on hover */
     @media (min-width: 601px) {
-      .dropdown-content {
+      .dropdown {
+        text-align: center;
+      }
+      .dropdown:hover .dropdown-content {
         display: flex;
-        flex-direction: row;
-        justify-content: center;
-        padding: 10px;
-        position: absolute;
+      }
+      .dropdown-content {
         top: 30px;
         left: 50%;
         transform: translateX(-50%);
-        max-height: none;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.3s ease;
+        flex-direction: row;
+        gap: 10px;
+        padding: 10px;
+        white-space: nowrap;
       }
-
-      .dropdown-wrapper:hover .dropdown-content {
-        opacity: 1;
-        pointer-events: auto;
-      }
-
-      .dropdown-content.open {
-        max-height: none;
-      }
-
-      .dropdown-content a {
-        border-bottom: none;
-        margin: 0 10px;
-      }
-
       .hamburger {
+        display: flex;
+        margin: 0 auto;
+      }
+    }
+
+    /* Mobile: dropdown activated by click */
+    @media (max-width: 600px) {
+      .dropdown-wrapper {
+        width: 100%;
+      }
+      .dropdown-content {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        width: 100%;
+        text-align: center;
+        flex-direction: column;
         display: none;
+      }
+      .dropdown-wrapper.active .dropdown-content {
+        display: flex;
+        flex-direction: column;
+        animation: slideDown 0.3s ease forwards;
+      }
+      .dropdown-content a {
+        padding: 14px 0;
+        border-bottom: 1px solid #eee;
+      }
+      .dropdown-content a:last-child {
+        border-bottom: none;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
     }
 
@@ -140,15 +153,14 @@
       border-radius: 8px;
       box-shadow: 0 0 10px #ccc;
       max-width: 900px;
-      margin: 0 auto 40px;
+      margin-left: auto;
+      margin-right: auto;
     }
-
     h2 {
       color: #4CAF50;
       border-bottom: 2px solid #4CAF50;
       padding-bottom: 5px;
     }
-
     footer {
       text-align: center;
       color: #666;
@@ -161,49 +173,36 @@
 
 <header>
   <div class="header-content">
-    <img
-      src="https://raw.githubusercontent.com/NSPC2025/beatles-website/refs/heads/main/Beatles%20Info%20Site%20Logo%20Design.png"
-      alt="Site Logo"
-      class="site-logo"
-    />
+    <img src="https://raw.githubusercontent.com/NSPC2025/beatles-website/refs/heads/main/Beatles%20Info%20Site%20Logo%20Design.png" alt="Site Logo" class="site-logo" />
     <h1>The Beatles - Comprehensive Information</h1>
   </div>
 </header>
 
-<div class="dropdown-wrapper">
-  <div class="hamburger" id="hamburger" aria-label="Menu" role="button" tabindex="0">
-    <span></span>
-    <span></span>
-    <span></span>
-  </div>
-  <div class="dropdown-content" id="menu">
-    <a href="#formation">Formation (1960–1962)</a>
-    <a href="#early-success">Early Success (1963–1965)</a>
-    <a href="#mid-period">Mid Period (1966–1967)</a>
-    <a href="#late-period">Late Period (1968–1970)</a>
-    <a href="mccartney.html">McCartney (1970)</a>
-    <a href="#legacy">Legacy & Influence</a>
+<!-- Dropdown menu -->
+<div style="text-align:center; margin-bottom: 30px;">
+  <div class="dropdown-wrapper" aria-label="Main navigation menu">
+    <div class="dropdown">
+      <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="dropdown-content" role="menu" aria-hidden="true">
+        <a href="#formation" role="menuitem">Formation (1960–1962)</a>
+        <a href="#early-success" role="menuitem">Early Success (1963–1965)</a>
+        <a href="#mid-period" role="menuitem">Mid Period (1966–1967)</a>
+        <a href="#late-period" role="menuitem">Late Period (1968–1970)</a>
+        <a href="mccartney.html" role="menuitem">McCartney (1970)</a>
+        <a href="#legacy" role="menuitem">Legacy & Influence</a>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- Page content -->
 <section id="formation">
   <h2>Formation (1960–1962)</h2>
   <p>The Beatles were formed in Liverpool in 1960...</p>
-</section>
-
-<section id="early-success">
-  <h2>Early Success (1963–1965)</h2>
-  <p>The Beatles rise to fame...</p>
-</section>
-
-<section id="mid-period">
-  <h2>Mid Period (1966–1967)</h2>
-  <p>The Beatles evolve artistically...</p>
-</section>
-
-<section id="late-period">
-  <h2>Late Period (1968–1970)</h2>
-  <p>The Beatles release their most ambitious works...</p>
 </section>
 
 <section id="legacy">
@@ -216,33 +215,23 @@
 </footer>
 
 <script>
-  const hamburger = document.getElementById('hamburger');
-  const menu = document.getElementById('menu');
+  const dropdownWrapper = document.querySelector('.dropdown-wrapper');
+  const hamburger = document.querySelector('.hamburger');
 
   function isMobile() {
-    return window.matchMedia("(max-width: 600px)").matches;
+    return window.matchMedia('(max-width: 600px)').matches;
   }
 
   hamburger.addEventListener('click', () => {
     if (isMobile()) {
-      menu.classList.toggle('open');
+      dropdownWrapper.classList.toggle('active');
     }
   });
 
   document.addEventListener('click', (e) => {
-    if (isMobile()) {
-      if (!hamburger.contains(e.target) && !menu.contains(e.target)) {
-        menu.classList.remove('open');
-      }
+    if (!dropdownWrapper.contains(e.target)) {
+      dropdownWrapper.classList.remove('active');
     }
-  });
-
-  menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      if (isMobile()) {
-        menu.classList.remove('open');
-      }
-    });
   });
 </script>
 

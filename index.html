@@ -89,20 +89,10 @@
       color: white;
     }
 
-    /* מופיע כשמתווסף class active */
-    .dropdown.active .dropdown-content {
+    /* הופך לגלוי גם ב-hover וגם ב-active (למובייל בלחיצה) */
+    .dropdown.active .dropdown-content,
+    .dropdown:hover .dropdown-content {
       display: block;
-    }
-
-    /* במחשב - פותח תפריט כשעוברים עם העכבר */
-    @media (hover: hover) and (pointer: fine) {
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }
-      /* בטלפון אין שינוי ב-hover */
-      .dropdown.active .dropdown-content {
-        display: block;
-      }
     }
 
     @media (max-width: 600px) {
@@ -296,33 +286,38 @@
   const dropdown = document.querySelector('.dropdown');
   const hamburger = document.querySelector('.hamburger');
 
-  // בחר לפי סוג המכשיר אם להפעיל לחיצה או לא
-  function isTouchDevice() {
-    return ('ontouchstart' in window) || navigator.maxTouchPoints > 0;
-  }
+  // למובייל: הפעל/כבה בלחיצה
+  hamburger.addEventListener('click', (e) => {
+    e.stopPropagation(); // לא להעביר אירוע לחיצה הלאה
+    dropdown.classList.toggle('active');
+  });
 
-  if (isTouchDevice()) {
-    // בטלפון - פתיחה וסגירה בלחיצה
-    hamburger.addEventListener('click', (e) => {
-      e.stopPropagation();
-      dropdown.classList.toggle('active');
-    });
-    document.addEventListener('click', () => {
+  // סגור בלחיצה מחוץ לתפריט
+  document.addEventListener('click', () => {
+    dropdown.classList.remove('active');
+  });
+
+  // סגור עם מקש ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
       dropdown.classList.remove('active');
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        dropdown.classList.remove('active');
-      }
-    });
-  } else {
-    // במחשב אין צורך בJS לפתיחה, רק סגירה בלחיצה מחוץ לתפריט
-    document.addEventListener('click', (e) => {
-      if (!dropdown.contains(e.target)) {
-        dropdown.classList.remove('active');
-      }
-    });
-  }
+    }
+  });
+
+  // ניהול פתיחה וסגירה עם העכבר, שומר שכשעוברים לתפריט לא נסגר
+  dropdown.addEventListener('mouseleave', (e) => {
+    // נבדוק אם העכבר יצא גם מהתפריט (לא רק מההמבורגר)
+    // אם כן, נסגור את התפריט רק אם אין class active (כלומר לא בלחיצה במובייל)
+    if (!dropdown.classList.contains('active')) {
+      // כשמוציאים את העכבר מה-dropdown, נסגור את התפריט
+      dropdown.classList.remove('active');
+    }
+  });
+  
+  // כדי שהתפריט לא יסגר כשהעכבר בתוך ה-dropdown-content
+  dropdown.addEventListener('mouseenter', () => {
+    // לא נעשה כלום, התפריט נשאר פתוח בזמן שהעכבר מעליו
+  });
 </script>
 
 </body>

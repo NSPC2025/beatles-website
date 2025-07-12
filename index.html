@@ -44,34 +44,19 @@
       cursor: pointer;
       width: 30px;
       height: 22px;
-      display: flex; /* תמיד נראה */
+      display: flex; /* always visible */
       flex-direction: column;
       justify-content: space-between;
       margin: 0 auto;
-      transition: all 0.3s ease;
     }
     .hamburger span {
       display: block;
       height: 4px;
       background-color: #4CAF50;
       border-radius: 2px;
-      transition: all 0.3s ease;
-      transform-origin: center;
+      transition: background-color 0.3s ease;
     }
     .dropdown:hover .hamburger span {
-      background-color: #388E3C;
-    }
-
-    /* המרה ל-X כשפתוח (class active) */
-    .dropdown.active .hamburger span:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-      background-color: #388E3C;
-    }
-    .dropdown.active .hamburger span:nth-child(2) {
-      opacity: 0;
-    }
-    .dropdown.active .hamburger span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
       background-color: #388E3C;
     }
 
@@ -194,6 +179,7 @@
   </div>
 </header>
 
+<!-- תפריט ההמבורגר -->
 <div style="text-align:center; margin-bottom: 30px;">
   <div class="dropdown" aria-label="Main navigation menu">
     <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
@@ -212,6 +198,7 @@
   </div>
 </div>
 
+<!-- תוכן הדף -->
 <section id="formation">
   <h2>Formation (1960–1962)</h2>
   <p>The Beatles were formed in Liverpool in 1960...</p>
@@ -255,15 +242,6 @@
     }
   });
 
-  // גם במחשב אפשר ללחוץ על ההמבורגר לפתיחה/סגירה
-  // (אם תרצה - אפשר להסיר את התנאי של isMobile מהקטע הזה)
-  hamburger.addEventListener('click', () => {
-    if (!isMobile()) {
-      dropdown.classList.toggle('active');
-    }
-  });
-
-  // סגירת תפריט בלחיצה מחוץ לו (רק במובייל)
   document.addEventListener('click', (event) => {
     if (isMobile()) {
       if (!dropdown.contains(event.target)) {
@@ -272,7 +250,6 @@
     }
   });
 
-  // סגירת תפריט בלחיצה על קישור (רק במובייל)
   const menuLinks = dropdown.querySelectorAll('.dropdown-content a');
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {

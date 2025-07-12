@@ -11,115 +11,120 @@
       background-color: #fafafa;
       color: #222;
       line-height: 1.6;
-      word-break: normal;
-      overflow-wrap: normal;
-      hyphens: none;
-    }
-    p, li, h1, h2, h3, a, nav a {
-      word-break: normal;
-      overflow-wrap: normal;
-      hyphens: none;
     }
     header {
       background-color: #222;
       color: white;
       padding: 20px;
-      text-align: center;
       border-radius: 8px;
       margin-bottom: 30px;
+    }
+    .header-content {
       display: flex;
       align-items: center;
-      justify-content: center;
       gap: 20px;
     }
-    header img {
-      max-width: 60px;
+    .site-logo {
+      max-width: 80px;
       height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-    nav {
-      background-color: #4CAF50;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 30px;
-      box-shadow: 0 0 10px #aaa;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-    /* Main menu container */
-    nav ul.menu {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-wrap: wrap;
-    }
-    nav ul.menu li {
-      position: relative;
-      margin-right: 20px;
-    }
-    nav ul.menu li a {
-      text-decoration: none;
-      padding: 8px 12px;
-      display: block;
-      color: white;
-      background-color: #4CAF50;
-      border-radius: 4px;
-      font-weight: bold;
-      white-space: nowrap;
-      transition: background-color 0.3s ease;
-    }
-    nav ul.menu li a:hover,
-    nav ul.menu li a:focus {
-      background-color: #45a049;
-      outline: none;
-    }
-    /* Dropdown styles */
-    nav ul.menu li.dropdown:hover > ul.dropdown-content,
-    nav ul.menu li.dropdown:focus-within > ul.dropdown-content {
-      display: block;
-    }
-    ul.dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: #4CAF50;
-      min-width: 160px;
-      top: 100%;
-      left: 0;
-      border-radius: 4px;
-      padding: 0;
-      list-style: none;
-      z-index: 1000;
+      border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-    ul.dropdown-content li a {
-      padding: 10px;
+
+    /* תפריט המבורגר */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+      user-select: none;
+    }
+    .hamburger {
+      cursor: pointer;
+      width: 30px;
+      height: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .hamburger span {
+      display: block;
+      height: 4px;
+      background-color: #4CAF50;
+      border-radius: 2px;
+      transition: background-color 0.3s ease;
+    }
+    .dropdown:hover .hamburger span {
+      background-color: #388E3C;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 28px; /* מתחת ל"שלושה הקווים" */
+      left: 0;
+      background-color: white;
+      min-width: 180px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      border-radius: 6px;
+      z-index: 1000;
+    }
+    .dropdown-content a {
+      color: #222;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-weight: bold;
+      border-bottom: 1px solid #ddd;
+      transition: background-color 0.2s ease;
+    }
+    .dropdown-content a:last-child {
+      border-bottom: none;
+    }
+    .dropdown-content a:hover {
       background-color: #4CAF50;
       color: white;
-      font-weight: normal;
-      border-radius: 0;
     }
-    ul.dropdown-content li a:hover,
-    ul.dropdown-content li a:focus {
-      background-color: #388E3C;
-      outline: none;
+
+    /* הצגת הרשימה הנפתחת כשעומדים עם העכבר על התפריט */
+    .dropdown:hover .dropdown-content {
+      display: block;
     }
-    /* Responsive */
+
+    /* התאמה למובייל */
     @media (max-width: 600px) {
-      nav ul.menu {
+      .header-content {
         flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        text-align: center;
       }
-      nav ul.menu li {
-        margin-right: 0;
-        margin-bottom: 8px;
-      }
-      ul.dropdown-content {
+      .dropdown-content {
         position: static;
-        min-width: auto;
-        border-radius: 0;
         box-shadow: none;
+        background-color: transparent;
+        display: none;
+        width: 100%;
       }
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+      .dropdown-content a {
+        border-bottom: none;
+        padding: 10px 0;
+        font-weight: normal;
+      }
+      .hamburger {
+        margin: 0 auto;
+      }
+    }
+
+    /* שאר העיצוב המקורי שלך */
+    p, li, h1, h2, h3, a {
+      word-break: normal;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+    h1 {
+      margin: 0;
     }
     section {
       background-color: white;
@@ -157,26 +162,31 @@
 <body>
 
 <header>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/The_Beatles_logo.svg/120px-The_Beatles_logo.svg.png" alt="The Beatles Logo" />
-  <h1>The Beatles - Comprehensive Information</h1>
-</header>
+  <div class="header-content">
+    <img
+      src="https://sdmntprsouthcentralus.oaiusercontent.com/files/00000000-cfb0-61f7-b631-8e77b070dd08/raw?se=2025-07-12T11%3A04%3A22Z&sp=r&sv=2024-08-04&sr=b&scid=d507fbd8-d320-5e7e-b007-f6cab7870ee2&skoid=c953efd6-2ae8-41b4-a6d6-34b1475ac07c&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-07-12T00%3A33%3A17Z&ske=2025-07-13T00%3A33%3A17Z&sks=b&skv=2024-08-04&sig=QXs3UOGTQotw20lxg1D1nEh23IqLpoGCkRQVLnkAuv4%3D"
+      alt="Site Logo"
+      class="site-logo"
+    />
+    <h1>The Beatles - Comprehensive Information</h1>
 
-<nav>
-  <ul class="menu">
-    <li><a href="#formation">Formation (1960–1962)</a></li>
-    <li class="dropdown" tabindex="0">
-      <a href="#early-success" class="dropbtn" aria-haspopup="true" aria-expanded="false">Early Success (1963–1965)</a>
-      <ul class="dropdown-content" aria-label="submenu">
-        <li><a href="#albums">Albums</a></li>
-        <li><a href="#highlights">Highlights</a></li>
-      </ul>
-    </li>
-    <li><a href="#mid-period">Mid Period (1966–1967)</a></li>
-    <li><a href="#late-period">Late Period (1968–1970)</a></li>
-    <li><a href="mccartney.html">McCartney (1970)</a></li>
-    <li><a href="#legacy">Legacy & Influence</a></li>
-  </ul>
-</nav>
+    <div class="dropdown" style="margin-left:auto;">
+      <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="dropdown-content" role="menu" aria-hidden="true">
+        <a href="#formation" role="menuitem">Formation (1960–1962)</a>
+        <a href="#early-success" role="menuitem">Early Success (1963–1965)</a>
+        <a href="#mid-period" role="menuitem">Mid Period (1966–1967)</a>
+        <a href="#late-period" role="menuitem">Late Period (1968–1970)</a>
+        <a href="mccartney.html" role="menuitem">McCartney (1970)</a>
+        <a href="#legacy" role="menuitem">Legacy & Influence</a>
+      </div>
+    </div>
+  </div>
+</header>
 
 <section id="formation">
   <h2>Formation (1960–1962)</h2>

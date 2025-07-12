@@ -91,8 +91,31 @@
     }
 
     @media (min-width: 601px) {
-      .dropdown:hover .dropdown-content {
-        display: block;
+      .hamburger {
+        display: none;
+      }
+      .dropdown-content {
+        display: flex !important;
+        position: static;
+        background-color: transparent;
+        box-shadow: none;
+        min-width: auto;
+        transform: none;
+        padding: 0;
+      }
+      .dropdown-content a {
+        border: none;
+        padding: 0 15px;
+        font-weight: bold;
+        color: white;
+        display: inline-block;
+      }
+      .dropdown-content a:hover {
+        background-color: rgba(255,255,255,0.2);
+        color: white;
+      }
+      .dropdown.active .dropdown-content {
+        display: flex !important;
       }
     }
 
@@ -100,22 +123,19 @@
       .hamburger {
         display: flex;
       }
-      .dropdown:hover .dropdown-content {
-        display: none;
-      }
-      /* כשהdropdown עם class active מציג את התפריט */
-      .dropdown.active .dropdown-content {
-        display: block;
-        background-color: white;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-        border-radius: 6px;
-      }
       .dropdown-content {
         position: static;
         box-shadow: none;
         background-color: transparent;
         width: 100%;
         transform: none;
+        display: none; /* מוסתר כברירת מחדל */
+      }
+      .dropdown.active .dropdown-content {
+        display: block;
+        background-color: white;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        border-radius: 6px;
       }
       .dropdown-content a {
         border-bottom: none;
@@ -182,12 +202,12 @@
 
 <div style="text-align:center; margin-bottom: 30px;">
   <div class="dropdown" aria-label="Main navigation menu">
-    <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
+    <div class="hamburger" aria-label="Menu" role="button" tabindex="0" aria-expanded="false" aria-controls="menu-list">
       <span></span>
       <span></span>
       <span></span>
     </div>
-    <div class="dropdown-content" role="menu" aria-hidden="true">
+    <div class="dropdown-content" id="menu-list" role="menu" aria-hidden="true">
       <a href="#formation" role="menuitem">Formation (1960–1962)</a>
       <a href="#early-success" role="menuitem">Early Success (1963–1965)</a>
       <a href="#mid-period" role="menuitem">Mid Period (1966–1967)</a>
@@ -289,6 +309,9 @@
   hamburger.addEventListener('click', () => {
     if (isMobile()) {
       dropdown.classList.toggle('active');
+      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!expanded));
+      dropdown.querySelector('.dropdown-content').setAttribute('aria-hidden', String(expanded));
     }
   });
 
@@ -296,6 +319,8 @@
     if (isMobile()) {
       if (!dropdown.contains(event.target)) {
         dropdown.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        dropdown.querySelector('.dropdown-content').setAttribute('aria-hidden', 'true');
       }
     }
   });
@@ -305,6 +330,8 @@
     link.addEventListener('click', () => {
       if (isMobile()) {
         dropdown.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
+        dropdown.querySelector('.dropdown-content').setAttribute('aria-hidden', 'true');
       }
     });
   });

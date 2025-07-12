@@ -52,10 +52,25 @@
     }
 
     footer {
-      text-align: center;
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
       font-size: 0.9em;
       color: #666;
-      margin-top: 50px;
+      background-color: #fff;
+      border-top: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+    }
+
+    footer .footer-logo {
+      max-width: 100px;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
 
     .back-link {
@@ -86,17 +101,6 @@
     .back-link a:focus-visible {
       outline: 2px solid #2E7D32;
       outline-offset: 2px;
-    }
-
-    .logo-container {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .logo-container img {
-      max-width: 150px;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
     @media (max-width: 600px) {
@@ -134,16 +138,22 @@
         font-size: 0.95em;
         margin-bottom: 20px;
       }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      footer .footer-logo {
+        max-width: 80px;
+      }
     }
   </style>
 </head>
 <body>
 
   <main>
-    <div class="logo-container">
-      <img src="https://raw.githubusercontent.com/NSPC2025/beatles-website/refs/heads/main/Beatles%20Info%20Site%20Logo%20Design.png" alt="Site Logo" />
-    </div>
-
     <h1>McCartney (1970)</h1>
 
     <div class="back-link">
@@ -223,6 +233,11 @@
   </main>
 
   <footer>
+    <img 
+      src="https://raw.githubusercontent.com/NSPC2025/beatles-website/refs/heads/main/Beatles%20Info%20Site%20Logo%20Design.png" 
+      alt="Site Logo" 
+      class="footer-logo" 
+    />
     <p>&copy; 2025 Beatles Info Site</p>
   </footer>
 </body>

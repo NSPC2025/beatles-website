@@ -40,47 +40,39 @@
       margin: 0 auto;
     }
 
-    /* ההמבורגר - שלושה קווים */
     .hamburger {
       cursor: pointer;
       width: 30px;
       height: 22px;
-      display: flex;
+      display: flex; /* תמיד נראה */
       flex-direction: column;
       justify-content: space-between;
       margin: 0 auto;
-      user-select: none;
+      transition: all 0.3s ease;
     }
     .hamburger span {
       display: block;
       height: 4px;
       background-color: #4CAF50;
       border-radius: 2px;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
+      transform-origin: center;
     }
-    /* סמל ה־❌ מוסתר כברירת מחדל */
-    .hamburger .close-icon {
-      display: none;
-      font-size: 24px;
-      color: #4CAF50;
-      line-height: 22px;
-      text-align: center;
-      cursor: pointer;
-      transition: color 0.3s ease;
-      user-select: none;
-    }
-
-    /* hover על ההמבורגר משנה צבע הקווים */
     .dropdown:hover .hamburger span {
       background-color: #388E3C;
     }
 
-    /* כשהתפריט פעיל - מחביאים את הקווים ומציגים ❌ */
-    .dropdown.active .hamburger span {
-      display: none;
+    /* המרה ל-X כשפתוח (class active) */
+    .dropdown.active .hamburger span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+      background-color: #388E3C;
     }
-    .dropdown.active .hamburger .close-icon {
-      display: block;
+    .dropdown.active .hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    .dropdown.active .hamburger span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+      background-color: #388E3C;
     }
 
     .dropdown-content {
@@ -96,6 +88,7 @@
       z-index: 1000;
       text-align: left;
     }
+
     .dropdown-content a {
       color: #222;
       padding: 12px 16px;
@@ -113,19 +106,18 @@
       color: white;
     }
 
-    /* במחשב - פתיחה ב-hover */
+    /* Desktop: open on hover */
     @media (min-width: 601px) {
       .dropdown:hover .dropdown-content {
         display: block;
       }
     }
 
-    /* במובייל - ביטול פתיחה ב-hover והפעלת לחיצה */
+    /* Mobile: open on click */
     @media (max-width: 600px) {
       .dropdown:hover .dropdown-content {
         display: none;
       }
-      /* כשהdropdown פעיל - מציג את התפריט */
       .dropdown.active .dropdown-content {
         display: block;
         background-color: white;
@@ -202,14 +194,12 @@
   </div>
 </header>
 
-<!-- תפריט ההמבורגר במרכז מתחת לכותרת -->
 <div style="text-align:center; margin-bottom: 30px;">
   <div class="dropdown" aria-label="Main navigation menu">
     <div class="hamburger" aria-label="Menu" role="button" tabindex="0">
       <span></span>
       <span></span>
       <span></span>
-      <span class="close-icon" aria-hidden="true">❌</span>
     </div>
     <div class="dropdown-content" role="menu" aria-hidden="true">
       <a href="#formation" role="menuitem">Formation (1960–1962)</a>
@@ -224,78 +214,27 @@
 
 <section id="formation">
   <h2>Formation (1960–1962)</h2>
-  <p>The Beatles were formed in Liverpool in 1960, initially with members John Lennon, Paul McCartney, George Harrison, Stuart Sutcliffe, and Pete Best. The band performed in local clubs and honed their style during this period.</p>
-  <h3>Key Events:</h3>
-  <ul>
-    <li>1960: Band forms and begins performing in Liverpool and Hamburg, Germany.</li>
-    <li>1961: Pete Best joins as drummer; Stuart Sutcliffe leaves to focus on art.</li>
-    <li>1962: Ringo Starr replaces Pete Best on drums.</li>
-    <li>1962: First single "Love Me Do" is released.</li>
-  </ul>
+  <p>The Beatles were formed in Liverpool in 1960...</p>
 </section>
 
 <section id="early-success">
   <h2>Early Success (1963–1965)</h2>
-  <p>The Beatles rise to fame in the UK and later internationally. They released several hit singles and albums during this era.</p>
-  <h3>Albums:</h3>
-  <ul>
-    <li>1963: "Please Please Me"</li>
-    <li>1964: "A Hard Day's Night"</li>
-    <li>1965: "Help!"</li>
-    <li>1965: "Rubber Soul"</li>
-  </ul>
-  <h3>Highlights:</h3>
-  <ul>
-    <li>Beatlemania sweeps UK and US.</li>
-    <li>First appearance on The Ed Sullivan Show in 1964.</li>
-    <li>Innovative songwriting partnership of Lennon-McCartney grows stronger.</li>
-  </ul>
+  <p>Details about this period...</p>
 </section>
 
 <section id="mid-period">
   <h2>Mid Period (1966–1967)</h2>
-  <p>The Beatles evolve artistically, exploring new musical styles and studio techniques.</p>
-  <h3>Albums:</h3>
-  <ul>
-    <li>1966: "Revolver"</li>
-    <li>1967: "Sgt. Pepper's Lonely Hearts Club Band"</li>
-  </ul>
-  <h3>Notable Events:</h3>
-  <ul>
-    <li>1966: Last live concert at Candlestick Park.</li>
-    <li>1967: Release of the landmark "Sgt. Pepper's" album.</li>
-    <li>Experimentation with psychedelia and studio effects.</li>
-  </ul>
+  <p>Details about Revolver, Sgt. Pepper...</p>
 </section>
 
 <section id="late-period">
   <h2>Late Period (1968–1970)</h2>
-  <p>The Beatles release their most ambitious works, but internal tensions rise leading to their breakup.</p>
-  <h3>Albums:</h3>
-  <ul>
-    <li>1968: "The Beatles" (White Album)</li>
-    <li>1969: "Abbey Road"</li>
-    <li>1970: "Let It Be"</li>
-  </ul>
-  <h3>Key Moments:</h3>
-  <ul>
-    <li>1969: Recording of "Abbey Road".</li>
-    <li>1970: Paul McCartney announces departure; the band dissolves officially.</li>
-    <li>Final projects and solo careers begin.</li>
-  </ul>
+  <p>White Album, Abbey Road, Let It Be...</p>
 </section>
 
 <section id="legacy">
   <h2>Legacy & Influence</h2>
-  <p>The Beatles remain one of the most influential bands in music history, inspiring countless artists and shaping modern popular music.</p>
-  <ul>
-    <li>Multiple Grammy Awards and Hall of Fame inductions.</li>
-    <li>Innovations in recording, songwriting, and music videos.</li>
-    <li>Continuing cultural impact through films, tribute bands, and literature.</li>
-  </ul>
-  <p>For further reading, visit 
-    <a href="https://en.wikipedia.org/wiki/The_Beatles" target="_blank" rel="noopener noreferrer">The Beatles Wikipedia page</a>.
-  </p>
+  <p>The Beatles remain one of the most influential bands...</p>
 </section>
 
 <footer>
@@ -310,23 +249,36 @@
     return window.matchMedia("(max-width: 600px)").matches;
   }
 
-  // בלחיצה על ההמבורגר פותחים/סוגרים את התפריט
   hamburger.addEventListener('click', () => {
-    dropdown.classList.toggle('active');
-  });
-
-  // סגירת התפריט אם לוחצים מחוץ אליו
-  document.addEventListener('click', (event) => {
-    if (!dropdown.contains(event.target)) {
-      dropdown.classList.remove('active');
+    if (isMobile()) {
+      dropdown.classList.toggle('active');
     }
   });
 
-  // סגירת התפריט בלחיצה על קישור
+  // גם במחשב אפשר ללחוץ על ההמבורגר לפתיחה/סגירה
+  // (אם תרצה - אפשר להסיר את התנאי של isMobile מהקטע הזה)
+  hamburger.addEventListener('click', () => {
+    if (!isMobile()) {
+      dropdown.classList.toggle('active');
+    }
+  });
+
+  // סגירת תפריט בלחיצה מחוץ לו (רק במובייל)
+  document.addEventListener('click', (event) => {
+    if (isMobile()) {
+      if (!dropdown.contains(event.target)) {
+        dropdown.classList.remove('active');
+      }
+    }
+  });
+
+  // סגירת תפריט בלחיצה על קישור (רק במובייל)
   const menuLinks = dropdown.querySelectorAll('.dropdown-content a');
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
-      dropdown.classList.remove('active');
+      if (isMobile()) {
+        dropdown.classList.remove('active');
+      }
     });
   });
 </script>

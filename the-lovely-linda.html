@@ -51,6 +51,13 @@
       font-style: italic;
     }
 
+    .audio-player {
+      margin: 6px auto 20px auto;
+      display: block;
+      width: 100%;
+      max-width: 400px;
+    }
+
     footer {
       max-width: 960px;
       margin: 0 auto;
@@ -171,7 +178,17 @@
 
       <p><strong>Versions:</strong><br>
       [A] McCartney (1970)<br>
-      [B] Working Classical (1999)</p>
+      <audio class="audio-player" controls>
+        <source src="audio/the-lovely-linda-mccartney-1970.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+
+      [B] Working Classical (1999)<br>
+      <audio class="audio-player" controls>
+        <source src="audio/the-lovely-linda-working-classical-1999.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+      </audio>
+      </p>
 
       <hr>
       
@@ -182,7 +199,7 @@
       
       <p><strong>Recording:</strong><br>
       [A] 23–30 December 1969<br>
-      [B] 21-25 February 1999</p>
+      [B] 21–25 February 1999</p>
 
       <hr>
 
@@ -210,7 +227,7 @@
       
       <hr>
 
-      <!-- הטקסטים המורחבים ממשיכים כאן כרגיל -->
+      <!-- המשך הטקסטים והמידע כאן -->
     </section>
   </main>
 

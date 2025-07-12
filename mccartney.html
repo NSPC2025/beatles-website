@@ -32,7 +32,7 @@
       text-align: center;
     }
 
-    img {
+    img.album-cover {
       width: 250px;
       float: left;
       margin: 0 20px 15px 0;
@@ -69,11 +69,35 @@
       font-weight: bold;
       text-decoration: none;
       transition: color 0.3s ease, text-decoration 0.3s ease;
+      padding: 6px 12px;
+      border-radius: 4px;
+      display: inline-block;
     }
-    .back-link a:hover {
-      color: #388E3C;
-      text-decoration: underline;
+    .back-link a:hover,
+    .back-link a:focus-visible {
+      color: #fff;
+      background-color: #388E3C;
+      text-decoration: none;
       cursor: pointer;
+      outline: none;
+      transform: scale(1.05);
+      transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+    }
+    .back-link a:focus-visible {
+      outline: 2px solid #2E7D32;
+      outline-offset: 2px;
+    }
+
+    /* לוגו מעל הכותרת, במרכז */
+    .logo-container {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo-container img {
+      max-width: 150px;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
     @media (max-width: 600px) {
@@ -88,7 +112,7 @@
         max-width: 100%;
       }
 
-      img {
+      img.album-cover {
         float: none;
         display: block;
         margin: 0 auto 20px;
@@ -117,6 +141,10 @@
 <body>
 
   <main>
+    <div class="logo-container">
+      <img src="file-service://file-WWCR87MRiDZeSrrVKDNUjZ" alt="Site Logo" />
+    </div>
+
     <h1>McCartney (1970)</h1>
 
     <div class="back-link">
@@ -127,6 +155,7 @@
       <img 
         src="https://www.psychedelicbabymag.com/wp-content/uploads/2020/10/McCartney-1970.jpg" 
         alt="McCartney Album Cover" 
+        class="album-cover"
       />
 
       <p><strong>Side 1:</strong><br>

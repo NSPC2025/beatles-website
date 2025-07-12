@@ -40,15 +40,16 @@
       margin: 0 auto;
     }
 
-    /* ההמבורגר מוצג רק במובייל */
+    /* ההמבורגר - שלושה קווים */
     .hamburger {
       cursor: pointer;
       width: 30px;
       height: 22px;
-      display: none; /* ברירת מחדל - מוסתר */
+      display: flex;
       flex-direction: column;
       justify-content: space-between;
       margin: 0 auto;
+      user-select: none;
     }
     .hamburger span {
       display: block;
@@ -57,8 +58,29 @@
       border-radius: 2px;
       transition: background-color 0.3s ease;
     }
+    /* סמל ה־❌ מוסתר כברירת מחדל */
+    .hamburger .close-icon {
+      display: none;
+      font-size: 24px;
+      color: #4CAF50;
+      line-height: 22px;
+      text-align: center;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      user-select: none;
+    }
+
+    /* hover על ההמבורגר משנה צבע הקווים */
     .dropdown:hover .hamburger span {
       background-color: #388E3C;
+    }
+
+    /* כשהתפריט פעיל - מחביאים את הקווים ומציגים ❌ */
+    .dropdown.active .hamburger span {
+      display: none;
+    }
+    .dropdown.active .hamburger .close-icon {
+      display: block;
     }
 
     .dropdown-content {
@@ -98,16 +120,12 @@
       }
     }
 
-    /* במובייל - מציגים המבורגר */
+    /* במובייל - ביטול פתיחה ב-hover והפעלת לחיצה */
     @media (max-width: 600px) {
-      .hamburger {
-        display: flex;
-      }
-      /* ביטול פתיחה ב-hover במובייל */
       .dropdown:hover .dropdown-content {
         display: none;
       }
-      /* כשהdropdown עם class active מציג את התפריט */
+      /* כשהdropdown פעיל - מציג את התפריט */
       .dropdown.active .dropdown-content {
         display: block;
         background-color: white;
@@ -191,6 +209,7 @@
       <span></span>
       <span></span>
       <span></span>
+      <span class="close-icon" aria-hidden="true">❌</span>
     </div>
     <div class="dropdown-content" role="menu" aria-hidden="true">
       <a href="#formation" role="menuitem">Formation (1960–1962)</a>
@@ -287,33 +306,27 @@
   const dropdown = document.querySelector('.dropdown');
   const hamburger = document.querySelector('.hamburger');
 
-  // רק בטלפון - הפעלה וסגירה בלחיצה
   function isMobile() {
     return window.matchMedia("(max-width: 600px)").matches;
   }
 
+  // בלחיצה על ההמבורגר פותחים/סוגרים את התפריט
   hamburger.addEventListener('click', () => {
-    if (isMobile()) {
-      dropdown.classList.toggle('active');
-    }
+    dropdown.classList.toggle('active');
   });
 
-  // סגירת התפריט אם לוחצים מחוץ לו (בטלפון בלבד)
+  // סגירת התפריט אם לוחצים מחוץ אליו
   document.addEventListener('click', (event) => {
-    if (isMobile()) {
-      if (!dropdown.contains(event.target)) {
-        dropdown.classList.remove('active');
-      }
+    if (!dropdown.contains(event.target)) {
+      dropdown.classList.remove('active');
     }
   });
 
-  // אופציונלי: סגירת תפריט בלחיצה על קישור
+  // סגירת התפריט בלחיצה על קישור
   const menuLinks = dropdown.querySelectorAll('.dropdown-content a');
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
-      if (isMobile()) {
-        dropdown.classList.remove('active');
-      }
+      dropdown.classList.remove('active');
     });
   });
 </script>

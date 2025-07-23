@@ -367,5 +367,20 @@
     />
     <p>&copy; 2025 Beatles Info Site</p>
   </footer>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.toggle-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', !expanded);
+
+        const content = button.nextElementSibling;
+        content.hidden = expanded;
+      });
+    });
+  });
+</script>
+
 </body>
 </html>

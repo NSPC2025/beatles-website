@@ -122,9 +122,22 @@
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
     } 
 
-    .version-block {
+.version-block {
   margin-bottom: 40px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* מרכז את כל התוכן במרכז */
+  max-width: 600px; /* להגביל רוחב לתאימות */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.version-block audio {
+  width: 100%; /* נגן אודיו יתפרס על כל הרוחב */
+  max-width: 600px; /* אבל לא יגדל מעבר לזה */
+  margin-bottom: 10px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
 }
 
 .toggle-button {
@@ -135,12 +148,22 @@
   cursor: pointer;
   padding: 10px;
   font-weight: bold;
+  width: 100%; /* ימלא את רוחב הקונטיינר */
+  text-align: left; /* הטקסט בצד שמאל */
+  display: flex;
+  align-items: center;
+  gap: 8px; /* רווח בין החץ לטקסט */
 }
 
 .toggle-button:hover,
 .toggle-button:focus {
   color: #7b1420;
   outline: none;
+}
+
+.arrow {
+  flex-shrink: 0; /* מונע מהחץ להצטמצם */
+  font-size: 1.3em;
 }
 
 .details {

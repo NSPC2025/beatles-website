@@ -89,7 +89,50 @@
       background-color: #4CAF50;
       color: white;
     }
+     .submenu {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
 
+.submenu-label {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 10px 16px;
+  display: block;
+  color: #222;
+}
+
+.submenu-content {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  white-space: nowrap;
+  z-index: 1001;
+}
+
+.submenu-content a {
+  display: block;
+  padding: 10px 16px;
+  color: #222;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.submenu-content a:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.dropdown-content .submenu:hover .submenu-content {
+  display: block;
+}
+
+    
     /* Desktop: horizontal dropdown on hover */
     @media (min-width: 601px) {
       .dropdown-wrapper:hover .dropdown-content {

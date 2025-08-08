@@ -156,6 +156,15 @@
   padding: 15px 20px;           /* ריווח פנימי */
   border-radius: 6px;           /* פינות מעוגלות */
   box-shadow: 0 1px 5px rgba(0,0,0,0.08); /* צל עדין */
+
+    opacity: 0;                   /* בהתחלה שקוף */
+  transform: translateY(10px);  /* טיפה למטה */
+  transition: all 0.3s ease;    /* אנימציה חלקה */
+}
+
+#eventsList.show {
+  opacity: 1;                   /* הופך לגלוי */
+  transform: translateY(0);     /* חוזר למקום */
 }
     
     /* Desktop: horizontal dropdown on hover */

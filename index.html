@@ -286,50 +286,47 @@
 </footer>
 
 <script>
-  // ניצור משתנה ריק שישמור את הנתונים מהקובץ JSON
-  let eventsData = {};
+ let eventsData = {};
 
-  // שלב א: טוען את קובץ האירועים (events.json)
-  fetch('events.json') // הנתיב לקובץ האירועים
-    .then(response => response.json()) // ממיר את התשובה ל-JSON
+  fetch('events.json')
+    .then(response => response.json())
     .then(data => {
-      eventsData = data; // שומר את הנתונים במשתנה
+      eventsData = data;
     })
     .catch(err => {
-      console.error('Error loading events data:', err); // אם יש שגיאה, מציגים בקונסול
+      console.error('Error loading events data:', err);
     });
 
-  // שלב ב: מאזין לבחירה בתיבת התאריךdocument.getElementById('datePicker').addEventListener('change', e => {
-  const selectedDate = e.target.value;
-  const eventsList = document.getElementById('eventsList');
-  eventsList.innerHTML = '';
+  document.getElementById('datePicker').addEventListener('change', e => {
+    const selectedDate = e.target.value;
+    const eventsList = document.getElementById('eventsList');
+    eventsList.innerHTML = '';
 
-  if (eventsData[selectedDate] && eventsData[selectedDate].length > 0) {
-    eventsData[selectedDate].forEach(event => {
-      const a = document.createElement('a');
-      a.href = event.page;
-      a.textContent = event.title;
-      a.style.display = 'block';
-      a.style.marginBottom = '8px';
-      a.style.color = '#4CAF50';
-      a.style.textDecoration = 'none';
-      a.setAttribute('role', 'link');
-      a.setAttribute('tabindex', '0');
+    if (eventsData[selectedDate] && eventsData[selectedDate].length > 0) {
+      eventsData[selectedDate].forEach(event => {
+        const a = document.createElement('a');
+        a.href = event.page;
+        a.textContent = event.title;
+        a.style.display = 'block';
+        a.style.marginBottom = '8px';
+        a.style.color = '#4CAF50';
+        a.style.textDecoration = 'none';
+        a.setAttribute('role', 'link');
+        a.setAttribute('tabindex', '0');
 
-      a.addEventListener('mouseenter', () => a.style.textDecoration = 'underline');
-      a.addEventListener('mouseleave', () => a.style.textDecoration = 'none');
+        a.addEventListener('mouseenter', () => a.style.textDecoration = 'underline');
+        a.addEventListener('mouseleave', () => a.style.textDecoration = 'none');
 
-      eventsList.appendChild(a);
-    });
-  } else {
-    eventsList.textContent = 'אין אירועים בתאריך זה.';
-  }
+        eventsList.appendChild(a);
+      });
+    } else {
+      eventsList.textContent = 'אין אירועים בתאריך זה.';
+    }
 
-  // כאן אנחנו מפעילים את האנימציה
-  eventsList.classList.remove('show');
-  setTimeout(() => {
-    eventsList.classList.add('show');
-  }, 50);
+    eventsList.classList.remove('show');
+    setTimeout(() => {
+      eventsList.classList.add('show');
+    }, 50);
   });
 </script>
 

@@ -1,79 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>John Lennon – Paternal Background</title>
-<link rel="stylesheet" href="style.css">
-<style>
-  .bio-box {
-    background-color: #f8f8f8;
-    border-left: 4px solid #ccc;
-    padding: 1rem 1.5rem;
-    margin: 1.5rem 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .bio-box h2 {
-    margin-top: 0;
-  }
-  .bio-box ul {
-    padding-left: 20px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>John Lennon – Paternal Background</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #fafafa;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    section {
+      background-color: white;
+      padding: 20px;
+      margin: 0 auto 40px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px #ccc;
+      max-width: 900px;
+    }
+
+    h1, h2 {
+      color: #971926;
+      text-align: center;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin: 20px 0;
+    }
+
+    .italic-custom-font {
+      font-family: "Adobe Garamond Pro", Garamond, serif;
+      font-style: italic;
+    }
+
+    footer {
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 20px;
+      font-size: 0.9em;
+      color: #666;
+      background-color: #fff;
+      border-top: 1px solid #ddd;
+      border-radius: 8px;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+    }
+
+    footer .footer-logo {
+      max-width: 100px;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .back-link {
+      display: block;
+      margin: 20px auto 40px;
+      text-align: center;
+    }
+
+    .back-link a {
+      color: #971926;
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s ease, text-decoration 0.3s ease;
+      padding: 6px 12px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .back-link a:hover,
+    .back-link a:focus-visible {
+      color: #fff;
+      background-color: #7b1420;
+      text-decoration: none;
+      cursor: pointer;
+      outline: none;
+      transform: scale(1.05);
+      transition: color 0.3s ease, background-color 0.3s ease, transform 0.3s ease;
+    }
+    .back-link a:focus-visible {
+      outline: 2px solid #6a101b;
+      outline-offset: 2px;
+    }
+
+    ul.job-list {
+      max-width: 600px;
+      margin: 1em auto;
+      padding-left: 1.2em;
+      list-style-type: disc;
+      color: #333;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        margin: 10px;
+        font-size: 16px;
+      }
+
+      section {
+        padding: 15px;
+        margin-bottom: 30px;
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 1.7em;
+        margin-bottom: 10px;
+        line-height: 1.3;
+      }
+
+      h2 {
+        font-size: 1.5em;
+      }
+
+      .back-link {
+        font-size: 0.95em;
+        margin-bottom: 20px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+
+      footer .footer-logo {
+        max-width: 80px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-  <img src="logo.png" alt="Site Logo" class="logo">
-  <h1>John Lennon – Paternal Background</h1>
-  <nav class="navbar">
-    <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
-    <ul class="menu">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="mccartney1970.html">McCartney (1970)</a></li>
-      <li><a href="beatles.html">The Beatles</a></li>
-    </ul>
-  </nav>
-</header>
+  <main>
+    <h1>John Lennon – Paternal Background</h1>
 
-<main>
-  <section class="bio-box">
-    <h2>John Lennon – Paternal Background</h2>
-    <p>
-      John Lennon, the grandfather, born 12 January 1855, led a life of mysteries, intrigue, dead-ends and deceptions—just as one might wish for a Lennon. Legal documents, the ones he couldn't help but complete, show how no job lasted long:
-    </p>
-    <ul>
-      <li>Warehouseman</li>
-      <li>Bookkeeper</li>
-      <li>Miller's bookkeeper</li>
-      <li>Railway clerk</li>
-      <li>Brewer's clerk</li>
-      <li>Sugar warehouseman</li>
-      <li>Grain warehouseman</li>
-      <li>Freight clerk</li>
-      <li>Stevedore master</li>
-      <li>Dock labourer</li>
-      <li>Shipping clerk</li>
-    </ul>
-  </section>
-</main>
+    <div class="back-link">
+      <a href="index.html">&larr; Back to Home</a>
+    </div>
 
-<footer>
-  <p>&copy; 2025 Beatles Archive</p>
-</footer>
+    <section>
+      <p>
+        John Lennon, the grandfather, born 12 January 1855, led a life of mysteries, intrigue, dead-ends and deceptions — just as one might wish for a Lennon. Legal documents, the ones he couldn't help but complete, show how no job lasted long:
+      </p>
 
-<script>
-  const toggle = document.querySelector('.menu-toggle');
-  const menu = document.querySelector('.menu');
-  toggle.addEventListener('click', () => {
-    menu.classList.toggle('active');
-  });
-</script>
+      <ul class="job-list">
+        <li>Warehouseman</li>
+        <li>Bookkeeper</li>
+        <li>Miller's bookkeeper</li>
+        <li>Railway clerk</li>
+        <li>Brewer's clerk</li>
+        <li>Sugar warehouseman</li>
+        <li>Grain warehouseman</li>
+        <li>Freight clerk</li>
+        <li>Stevedore master</li>
+        <li>Dock labourer</li>
+        <li>Shipping clerk</li>
+      </ul>
+    </section>
+  </main>
 
+  <footer>
+    <img
+      src="https://raw.githubusercontent.com/NSPC2025/beatles-website/refs/heads/main/Beatles%20Info%20Site%20Logo%20Design.png"
+      alt="Site Logo"
+      class="footer-logo"
+    />
+    <p>&copy; 2025 Beatles Info Site</p>
+  </footer>
 </body>
 </html>
-

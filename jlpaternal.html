@@ -38,9 +38,14 @@
       margin: 20px 0;
     }
 
-    .italic-custom-font {
-      font-family: "Adobe Garamond Pro", Garamond, serif;
-      font-style: italic;
+    /* הוסר italic מהמחלקה external-info */
+    .external-info {
+      font-size: 0.85em;
+      color: #555;
+      max-width: 850px;
+      margin: 20px auto 0;
+      line-height: 1.4;
+      white-space: pre-wrap;
     }
 
     footer {
@@ -144,30 +149,13 @@
     </div>
 
     <section>
-      <p><strong>John Lennon, the grandfather, born 12 January 1855,</strong> led a life of mysteries, intrigue, dead-ends and deceptions just as one might wish for a Lennon.</p>
+      <p>John Lennon, the grandfather, born 12 January 1855, led a life of mysteries, intrigue, dead-ends and deceptions just as one might wish for a Lennon.</p>
 
       <p>Legal documents, the ones he couldn't help but complete, show how no job lasted long:</p>
 
-      <ul>
-        <li>Warehouseman</li>
-        <li>Bookkeeper</li>
-        <li>Miller's bookkeeper</li>
-        <li>Railway clerk</li>
-        <li>Brewer's clerk</li>
-        <li>Sugar warehouseman</li>
-        <li>Grain warehouseman</li>
-        <li>Freight clerk</li>
-        <li>Stevedore master</li>
-        <li>Dock labourer</li>
-        <li>Shipping clerk</li>
-        <li>Freight clerk</li>
-        <li>Dock labourer</li>
-        <li>Freight clerk</li>
-        <li>Shipping clerk</li>
-        <li>Freight clerk</li>
-        <li>Dock labourer</li>
-        <li>Freight clerk</li>
-      </ul>
+      <p class="external-info">
+Warehouseman, bookkeeper, miller's bookkeeper, railway clerk, brewer's clerk, sugar warehouseman, grain warehouseman, freight clerk, stevedore master, dock labourer, shipping clerk, freight clerk, dock labourer, freight clerk, shipping clerk, freight clerk, dock labourer, freight clerk.
+      </p>
     </section>
   </main>
 

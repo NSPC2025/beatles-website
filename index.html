@@ -323,7 +323,7 @@
     if (eventsData[selectedDate] && eventsData[selectedDate].length > 0) {
       eventsData[selectedDate].forEach(event => {
         const a = document.createElement('a');
-        a.href = '/beatles-website/' + event.page;
+        a.href = event.page;
         a.textContent = event.title;
         a.style.display = 'block';
         a.style.marginBottom = '8px';

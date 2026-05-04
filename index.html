@@ -229,6 +229,35 @@
       background-color: #388E3C;
       outline: none;
     }
+    #timeline {
+  position: relative;
+  margin: 40px auto;
+  padding-left: 20px;
+  border-left: 3px solid #4CAF50;
+}
+
+.timeline-item {
+  margin-bottom: 30px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+}
+
+.timeline-date {
+  font-weight: bold;
+  color: #666;
+  margin-bottom: 5px;
+}
   </style>
 </head>
 <body>

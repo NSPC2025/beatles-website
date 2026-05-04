@@ -1,9 +1,17 @@
-{
-  "1957-06-09": [
-    {"title": "The Quarrymen enter the TV Star Search competition", "page": "events/1957/06/09/tqettssc.html"}
-  ],
-  "1960-12-05": [
-    {"title": "הקמת הלהקה", "page": "event-1960-12-05-1.html"},
-    {"title": "אירוע לדוגמה 2", "page": "event-1960-12-05-2.html"}
-  ]
-}
+[
+  {
+    "date": "1957-06-09",
+    "title": "The Quarrymen enter the TV Star Search competition",
+    "page": "events/1957/06/09/tqettssc.html"
+  },
+  {
+    "date": "1960-12-05",
+    "title": "הקמת הלהקה",
+    "page": "event-1960-12-05-1.html"
+  },
+  {
+    "date": "1960-12-05",
+    "title": "אירוע לדוגמה 2",
+    "page": "event-1960-12-05-2.html"
+  }
+]

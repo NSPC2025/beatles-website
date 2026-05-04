@@ -344,7 +344,6 @@ fetch('events.json')
   .then(data => {
     const timeline = document.getElementById('timeline');
 
-    // sort events by date
     data.sort((a, b) => new Date(a.date) - new Date(b.date));
 
     let currentYear = null;
@@ -352,7 +351,6 @@ fetch('events.json')
     data.forEach(event => {
       const year = event.date.split('-')[0];
 
-      // create year header
       if (year !== currentYear) {
         const yearEl = document.createElement('h3');
         yearEl.textContent = year;
@@ -360,7 +358,6 @@ fetch('events.json')
         currentYear = year;
       }
 
-      // create event item
       const item = document.createElement('div');
       item.className = 'timeline-item';
 

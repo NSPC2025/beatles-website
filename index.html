@@ -310,47 +310,38 @@
 </footer>
 
 <script>
- let eventsData = {};
+fetch('events.json')
+  .then(res => res.json())
+  .then(data => {
+    const timeline = document.getElementById('timeline');
 
-  fetch('events.json')
-    .then(response => response.json())
-    .then(data => {
-      eventsData = data;
-    })
-    .catch(err => {
-      console.error('Error loading events data:', err);
+    // sort events by date
+    data.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+    let currentYear = null;
+
+    data.forEach(event => {
+      const year = event.date.split('-')[0];
+
+      // create year header
+      if (year !== currentYear) {
+        const yearEl = document.createElement('h3');
+        yearEl.textContent = year;
+        timeline.appendChild(yearEl);
+        currentYear = year;
+      }
+
+      // create event item
+      const item = document.createElement('div');
+      item.className = 'timeline-item';
+
+      item.innerHTML = `
+        <div class="timeline-date">${event.date}</div>
+        <a href="${event.page}">${event.title}</a>
+      `;
+
+      timeline.appendChild(item);
     });
-
-  document.getElementById('datePicker').addEventListener('change', e => {
-    const selectedDate = e.target.value;
-    const eventsList = document.getElementById('eventsList');
-    eventsList.innerHTML = '';
-
-    if (eventsData[selectedDate] && eventsData[selectedDate].length > 0) {
-      eventsData[selectedDate].forEach(event => {
-        const a = document.createElement('a');
-        a.href = event.page;
-        a.textContent = event.title;
-        a.style.display = 'block';
-        a.style.marginBottom = '8px';
-        a.style.color = '#4CAF50';
-        a.style.textDecoration = 'none';
-        a.setAttribute('role', 'link');
-        a.setAttribute('tabindex', '0');
-
-        a.addEventListener('mouseenter', () => a.style.textDecoration = 'underline');
-        a.addEventListener('mouseleave', () => a.style.textDecoration = 'none');
-
-        eventsList.appendChild(a);
-      });
-    } else {
-      eventsList.textContent = 'אין אירועים בתאריך זה.';
-    }
-
-    eventsList.classList.remove('show');
-    setTimeout(() => {
-      eventsList.classList.add('show');
-    }, 50);
   });
 </script>
 
